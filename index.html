@@ -13,14 +13,8 @@
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{background:var(--deep);color:var(--ice);font:16px/1.55 Manrope,system-ui,sans-serif;display:flex;justify-content:center;overflow-x:hidden}
-#bg{position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 72% 6%,#1f7a92 0%,transparent 42%),radial-gradient(ellipse at 15% 35%,#0e3b57 0%,transparent 55%),linear-gradient(#07222f 0%,#041620 55%,#020a10 100%)}
-.shaft{position:fixed;top:0;height:62vh;width:12vw;z-index:-2;background:linear-gradient(rgba(130,225,255,.22),transparent);transform:skewX(-14deg);filter:blur(16px)}
-#moon{position:fixed;top:7vh;right:13vw;width:86px;aspect-ratio:1;border-radius:50%;z-index:-2;background:radial-gradient(circle at 35% 32%,#f4fcff,#a6dcef 55%,#4d8ba5);box-shadow:0 0 70px 20px rgba(120,220,255,.35)}
-#city{position:fixed;left:0;right:0;bottom:0;height:34vh;z-index:-2;pointer-events:none}
-#city svg{display:block;width:100%}
-#bld{height:62%}
-#refl{height:38%;transform:scaleY(-1);opacity:.28;filter:blur(1.5px);-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
-#city svg{height:100%}
+#bg{position:fixed;inset:-24px;z-index:-3;background:url("bg.jpg") center 30%/cover no-repeat;filter:blur(3px)}
+#veil{position:fixed;inset:0;z-index:-2;background:linear-gradient(rgba(2,12,20,.35),rgba(2,12,20,.6))}
 .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 main{width:100%;max-width:480px;padding:max(24px,env(safe-area-inset-top)) 22px max(24px,env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100%}
 section{display:flex;flex-direction:column;flex:1;gap:18px}
@@ -50,21 +44,15 @@ input[type=range]{width:100%;accent-color:var(--cy)}
 .err{color:var(--danger);font-size:14px;min-height:20px}
 .card{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:16px;white-space:pre-wrap;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 @media (prefers-reduced-motion:no-preference){
- #moon{animation:breathe 7s ease-in-out infinite}
- .shaft{animation:drift 14s ease-in-out infinite alternate}
- .mic[aria-pressed=true]{animation:ripple 1.6s ease-out infinite}
+   .mic[aria-pressed=true]{animation:ripple 1.6s ease-out infinite}
  button{transition:border-color .2s,box-shadow .2s}
 }
-@keyframes breathe{50%{box-shadow:0 0 100px 34px rgba(120,220,255,.45)}}
-@keyframes drift{to{transform:skewX(-14deg) translateX(30px);opacity:.7}}
 @keyframes ripple{0%{box-shadow:0 0 40px rgba(94,230,245,.6),0 0 0 0 rgba(94,230,245,.5)}100%{box-shadow:0 0 40px rgba(94,230,245,.6),0 0 0 46px rgba(94,230,245,0)}}
 </style>
 </head>
 <body>
 <div id="bg"></div>
-<div class="shaft" style="left:52vw"></div><div class="shaft" style="left:74vw;width:7vw"></div>
-<div id="moon"></div>
-<div id="city"><div id="bld"></div><div id="refl"></div></div>
+<div id="veil"></div>
 <div class="grain"></div>
 <main>
 
@@ -94,9 +82,9 @@ input[type=range]{width:100%;accent-color:var(--cy)}
   <button class="ghost" data-go="setup">Back</button>
   <h2 id="topicText"></h2>
   <p id="posText"></p>
-  <div class="card" id="primer">Read the topic, or get a short primer before you start.</div>
+  <div class="card" id="primer">Warm up: tap “Read up” for a quick overview of this topic, then start talking when you’re ready.</div>
   <div class="row">
-    <button id="getPrimer">Get a primer</button>
+    <button id="getPrimer">Read up</button>
     <button id="shuffle">New topic</button>
   </div>
   <p class="err" id="topicErr"></p>
@@ -139,26 +127,12 @@ const TOPICS = [
 ];
 const S = { mode: "discussion", mins: 10, topic: "", position: "", history: [], topicId: 0, left: 0, timer: null, listening: false, rec: null, busy: false };
 
-/* Skyline */
-(function () {
-  let x = 0, b = "", w = "";
-  while (x < 1200) {
-    const bw = 22 + Math.random() * 44, bh = 50 + Math.random() * 130, y = 200 - bh;
-    b += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="#020a10"/>`;
-    for (let i = 0; i < bw * bh / 90; i++)
-      w += `<rect x="${(x + 3 + Math.random() * (bw - 6)).toFixed(1)}" y="${(y + 4 + Math.random() * (bh - 8)).toFixed(1)}" width="2" height="2" fill="#7fe9ff" opacity="${(0.25 + Math.random() * 0.7).toFixed(2)}"/>`;
-    x += bw + Math.random() * 3;
-  }
-  const svg = `<svg viewBox="0 0 1200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">${b}${w}</svg>`;
-  $("bld").innerHTML = svg; $("refl").innerHTML = svg;
-})();
-
 function show(id) {
   document.querySelectorAll("section").forEach(s => s.hidden = s.id !== id);
   window.scrollTo(0, 0);
 }
 document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => show(b.dataset.go));
-const WORKER_URL = "https://think-proxy.sherina19.workers.dev/"; // see HOSTING_ON_GITHUB.md
+const WORKER_URL = "https://think-proxy.sherina19.workers.dev"; // see HOSTING_ON_GITHUB.md
 
 /* AI (through your Cloudflare Worker, so no key lives in this page) */
 async function chat(system, history, max = 1024, temp = 0.8) {
@@ -190,10 +164,10 @@ $("toTopic").onclick = () => { newTopic(); show("topic"); };
 /* Topic: a fresh AI-generated question each time, with a built-in list as backup */
 const AREAS = ["technology","education","everyday life","money habits","health and fitness","science","work and careers","cities and travel","food","creativity and thinking","friendship and communication","sport","the future","hobbies","art","learning and memory"];
 async function newTopic() {
-  const id = ++S.topicId;
+  const id = ++S.topicId; $("start").disabled = true;
   $("topicText").textContent = "Finding a topic…";
   $("posText").textContent = ""; $("topicErr").textContent = "";
-  $("primer").textContent = "Read the topic, or get a short primer before you start.";
+  $("primer").textContent = "Warm up: tap “Read up” for a quick overview of this topic, then start talking when you’re ready.";
   let t;
   try {
     const area = AREAS[Math.floor(Math.random() * AREAS.length)];
@@ -203,7 +177,7 @@ async function newTopic() {
   } catch (e) { t = ""; }
   if (id !== S.topicId) return;
   if (!t) { do { t = TOPICS[Math.floor(Math.random() * TOPICS.length)]; } while (t === S.topic && TOPICS.length > 1); }
-  S.topic = t;
+  S.topic = t; $("start").disabled = false;
   S.position = Math.random() < 0.5 ? "for" : "against";
   $("topicText").textContent = t;
   $("posText").textContent = S.mode === "debate"
@@ -214,7 +188,7 @@ $("shuffle").onclick = newTopic;
 $("getPrimer").onclick = async () => {
   $("primer").textContent = "Loading…"; $("topicErr").textContent = "";
   try {
-    $("primer").textContent = await chat(RULES, [{ role: "user", content: "Give a neutral primer of about 80 words, plus 3 key considerations, on: " + S.topic }], 600);
+    $("primer").textContent = await chat(RULES, [{ role: "user", content: "Give a short, neutral overview of about 80 words, plus 3 points worth thinking about, on: " + S.topic }], 600);
   } catch (e) { $("primer").textContent = ""; $("topicErr").textContent = e.message; }
 };
 
@@ -242,28 +216,45 @@ $("start").onclick = () => {
 };
 $("mic").onclick = () => S.listening ? S.rec.stop() : startMic();
 function startMic() {
-  if (S.busy) return;
+  if (S.busy) { $("convoErr").textContent = "Hold on, the AI is still replying…"; return; }
   speechSynthesis.cancel();
-  const rec = new SR(); let text = "";
-  rec.lang = navigator.language || "en-US"; rec.interimResults = false; rec.continuous = true;
-  rec.onresult = e => { for (let i = e.resultIndex; i < e.results.length; i++) if (e.results[i].isFinal) text += e.results[i][0].transcript + " "; };
-  rec.onerror = e => { $("convoErr").textContent = e.error === "not-allowed" ? "Microphone blocked. Allow microphone access for this site." : "Mic error: " + e.error; };
-  rec.onend = () => { setListening(false); if (text.trim()) send(text.trim()); };
-  S.rec = rec; rec.start(); setListening(true); $("convoErr").textContent = "";
+  $("convoErr").textContent = "";
+  let heard = "", rec;
+  try { rec = new SR(); } catch (e) { $("convoErr").textContent = "Speech recognition isn’t available in this browser."; return; }
+  rec.lang = navigator.language || "en-US"; rec.interimResults = true; rec.continuous = false;
+  rec.onresult = e => {
+    let all = "";
+    for (let i = 0; i < e.results.length; i++) all += e.results[i][0].transcript + " ";
+    heard = all.trim(); $("micHint").textContent = "Heard: " + heard;
+  };
+  rec.onerror = e => {
+    const m = {
+      "no-speech": "I didn’t hear anything. Tap Speak and try again.",
+      "audio-capture": "No microphone found.",
+      "not-allowed": "Microphone blocked. Allow microphone access for this site, then reload.",
+      "service-not-allowed": "Microphone blocked. Allow microphone access for this site, then reload.",
+      "network": "Speech service unreachable. Check your internet, or use Chrome or Edge (Brave blocks it)."
+    };
+    if (e.error !== "aborted") $("convoErr").textContent = m[e.error] || "Mic error: " + e.error;
+  };
+  rec.onend = () => { setListening(false); if (heard) send(heard); };
+  S.rec = rec;
+  try { rec.start(); setListening(true); } catch (e) { $("convoErr").textContent = "Couldn’t start the mic. Reload the page and try again."; }
 }
 function setListening(v) {
   S.listening = v; $("mic").setAttribute("aria-pressed", v);
   $("mic").textContent = v ? "Send" : "Speak";
-  $("micHint").textContent = v ? "Listening… tap Send when you’re done." : "Tap Speak, talk, then tap Send.";
+  $("micHint").textContent = v ? "Listening… pause, or tap Send when done." : "Tap Speak and talk. It sends when you pause.";
 }
 async function send(text) {
-  S.busy = true; addMsg("you", text); S.history.push({ role: "user", content: text });
+  S.busy = true; $("mic").textContent = "…"; $("micHint").textContent = "Thinking…";
+  addMsg("you", text); S.history.push({ role: "user", content: text });
   try {
     const reply = await chat(systemPrompt(), S.history);
     S.history.push({ role: "assistant", content: reply }); addMsg("ai", reply);
     const u = new SpeechSynthesisUtterance(reply); u.lang = navigator.language || "en-US"; speechSynthesis.speak(u);
   } catch (e) { S.history.pop(); $("convoErr").textContent = e.message; }
-  S.busy = false;
+  S.busy = false; setListening(false);
 }
 $("end").onclick = finish;
 
