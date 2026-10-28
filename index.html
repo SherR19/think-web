@@ -9,96 +9,136 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0d10;--panel:#12161b;--line:#232b34;--text:#EDEFF2;--muted:#8A94A0;--acc:#00ffcc;--rgb:0,255,204;color-scheme:dark}
-body[data-mode=debate]{--acc:#a855ff;--rgb:168,85,255}
+:root{color-scheme:dark}
+body[data-theme=neon]{--page:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.18),transparent 55%),#0b0d10;--text:#EDEFF2;--muted:#8A94A0;--line:rgba(255,255,255,.12);--acc:#00ffcc;--rgb:0,255,204;--d:0,255,204;--g:168,85,255;--btn:rgba(255,255,255,.04);--r:14px;--r2:20px;--body:Manrope,system-ui,sans-serif;--display:"Chakra Petch",sans-serif;--label:Manrope,sans-serif;--h1c:#fff;--h1s:0 0 28px rgba(var(--rgb),.6);--h2c:#fff;--grain:.09;--prim:var(--acc);--primc:#05100d;--prims:0 0 28px rgba(var(--rgb),.45);--field:rgba(255,255,255,.05);--panel:rgba(255,255,255,.04);--panel-line:rgba(var(--rgb),.22);--dface:#0c1a1f;--dline:rgba(var(--rgb),.7);--dpip:var(--acc);--clockc:var(--acc);--clockbg:rgba(0,0,0,.35);--clockb:1px solid var(--panel-line);--clocks:0 0 22px rgba(var(--rgb),.7);--micc:#05100d;--micbg:radial-gradient(circle at 35% 28%,#fff,var(--acc) 58%);--mics:0 0 36px rgba(var(--rgb),.6);--rbg:rgba(255,255,255,.04);--rc:#e8f1f4;--rb:1px dashed var(--acc)}
+body[data-theme=neon][data-mode=debate]{--acc:#a855ff;--rgb:168,85,255}
+
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.16),transparent 55%),var(--bg);background-attachment:fixed;color:var(--text);font:16px/1.55 Manrope,system-ui,sans-serif;display:flex;justify-content:center;overflow-x:hidden}
-.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-main{width:100%;max-width:480px;padding:max(22px,env(safe-area-inset-top)) 20px max(22px,env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100%}
-section{display:flex;flex-direction:column;flex:1;gap:16px}
+body{background:var(--page);background-attachment:fixed;color:var(--text);font:16px/1.6 var(--body);display:flex;justify-content:center;overflow-x:hidden}
+.grain{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main{width:100%;max-width:480px;padding:max(22px,env(safe-area-inset-top)) 22px max(22px,env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100%}
+section{display:flex;flex-direction:column;flex:1;gap:18px}
 section[hidden],[hidden]{display:none!important}
-h1,h2,.tag,.clock,.mbtn b,.chips button,.rule b,.ptext{font-family:"Chakra Petch",sans-serif}
-h1{font-size:68px;line-height:1;margin:3vh 0 0;text-transform:uppercase;letter-spacing:.06em;color:#fff;text-shadow:0 0 24px rgba(var(--rgb),.7)}
-h2{font-size:26px;margin:4px 0 0;text-transform:uppercase;letter-spacing:.08em}
-.tag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
+h1,h2,.mbtn b,.chips button,.clock,.mic,button.primary,.mode b{font-family:var(--display)}
+.tag,small,label,summary,.stylenote,.lh{font-family:var(--label)}
+h1{font-size:clamp(46px,15vw,66px);line-height:1;margin:1vh 0 0;color:var(--h1c);text-shadow:var(--h1s)}
+h2{font-size:26px;margin:4px 0 0;color:var(--h2c)}
 p{margin:0;color:var(--muted)}
+.tag{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
 button,input{font:inherit;color:inherit}
-button{cursor:pointer;text-align:left;padding:13px 15px;border-radius:10px;background:var(--panel);border:1px solid var(--line)}
+button{cursor:pointer;text-align:left;padding:13px 15px;border-radius:var(--r);background:var(--btn);border:1px solid var(--line)}
 button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-button.primary{margin-top:auto;text-align:center;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#031210;border:none;background:var(--acc);box-shadow:0 0 28px rgba(var(--rgb),.45)}
+button.primary{margin-top:auto;text-align:center;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primc);border:none;background:var(--prim);box-shadow:var(--prims)}
 button.ghost{background:none;border:none;color:var(--muted);padding:8px 0}
-button:disabled{opacity:.4;cursor:not-allowed}
+button:disabled{opacity:.45;cursor:not-allowed}
 .row{display:flex;gap:10px}.row>*{flex:1}
 small,label{color:var(--muted);font-size:13px}
-input[type=text]{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+input[type=text],select{width:100%;background:var(--field);border:1px solid var(--line);border-radius:var(--r);padding:12px;color:var(--text);font:inherit}
+select{margin-top:6px}option{background:#101418;color:#eee}
 input[type=range]{width:100%;accent-color:var(--acc)}
-select{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:6px;color:inherit;font:inherit}
-option{background:#12161b}
-.rules{display:flex;flex-direction:column;gap:8px}
-.rule{background:var(--panel);border-left:3px solid var(--acc);border-radius:6px;padding:10px 12px;font-size:14px;color:var(--muted)}
-.rule b{display:block;font-size:12px;letter-spacing:.16em;color:#fff}
-.rule.disc{border-color:#00ffcc}.rule.deb{border-color:#a855ff}
-.mbtn{--c:0,255,204;border-color:rgba(var(--c),.3)}.mbtn.m-deb{--c:168,85,255}
-.mbtn b{color:rgb(var(--c));font-size:18px;letter-spacing:.06em;text-transform:uppercase}
-.mbtn[aria-pressed=true]{border-color:rgb(var(--c));box-shadow:0 0 22px rgba(var(--c),.45),inset 0 0 16px rgba(var(--c),.12)}
-.styles{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.styles button b{display:block;font-family:"Chakra Petch",sans-serif;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
-.styles button[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 16px rgba(var(--rgb),.4)}
 summary{cursor:pointer;color:var(--muted);font-size:14px;padding:4px 0}
+#home{gap:24px}
+.hero{position:relative;isolation:isolate;padding-top:1vh}
+.lead{font-size:19px;line-height:1.45;color:var(--text);max-width:17em;margin-top:14px}
+.flow{display:flex;flex-direction:column;gap:20px}
+.flow p b{color:var(--text)}
+.flow em{color:var(--acc);font-style:normal;border-bottom:1px dashed var(--acc)}
+.modes{display:flex;gap:12px;align-items:flex-start}
+.mode{flex:1;padding:14px;border-radius:var(--r2);background:var(--panel);border:1px solid var(--panel-line)}
+.mode.disc{transform:rotate(-1.4deg) translateX(-3px)}
+.mode.deb{margin-top:24px;transform:rotate(1.6deg) translateX(3px)}
+.mode b{display:block;font-size:17px;margin-bottom:4px}
+.mode.disc b{color:rgb(var(--d))}.mode.deb b{color:rgb(var(--g))}
+.mode span{font-size:14px;color:var(--muted);line-height:1.45}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pill{border-radius:999px;padding:9px 18px;text-align:center}
+.pill[aria-pressed=true],.chips button[aria-pressed=true]{border-color:var(--acc);color:var(--acc);box-shadow:0 0 16px rgba(var(--rgb),.35)}
+.stylenote{font-size:13px;color:var(--muted);margin-top:8px;min-height:3.2em}
+#home .primary{position:sticky;bottom:max(14px,env(safe-area-inset-bottom))}
+.mbtn{--c:var(--d);border-color:rgba(var(--c),.4)}.mbtn.m-deb{--c:var(--g)}
+.mbtn b{display:block;color:rgb(var(--c));font-size:18px}
+.mbtn[aria-pressed=true]{border-color:rgb(var(--c));box-shadow:0 0 22px rgba(var(--c),.4)}
 .chips button{text-align:center;font-size:22px;font-weight:700}
-.chips button[aria-pressed=true]{border-color:var(--acc);color:var(--acc);box-shadow:0 0 16px rgba(var(--rgb),.4)}
-.pcard{position:relative;width:min(74%,290px);aspect-ratio:5/7;margin:4px auto;padding:22px 18px;border:2px solid var(--acc);border-radius:18px;background:linear-gradient(160deg,#171c23,#0c0f13);box-shadow:0 0 34px rgba(var(--rgb),.4);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
-.pcard::before{content:"◆";position:absolute;top:10px;left:14px;color:var(--acc);font-size:16px}
-.pcard::after{content:"◆";position:absolute;bottom:10px;right:14px;color:var(--acc);font-size:16px}
-body[data-mode=debate] .pcard{border-radius:6px;border-width:3px}
-body[data-mode=debate] .pcard i{position:absolute;top:0;left:0;right:0;height:9px;background:repeating-linear-gradient(135deg,var(--acc) 0 8px,transparent 8px 16px)}
-.ptext{font-size:23px;line-height:1.25;font-weight:700;color:#fff}
-.pos{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
+.sidenote{border:1px solid var(--acc);border-radius:var(--r);padding:10px 12px;background:rgba(var(--rgb),.1);color:var(--text);font-size:15px;line-height:1.45}
+.card{background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--r2);padding:14px;white-space:pre-wrap;font-size:14px}
 .pcard.rolling{filter:blur(4px);animation:glitch .12s steps(2) infinite}
 .pcard.snap{animation:snap .45s ease-out}
-#dice{display:inline-block;font-size:20px}#dice.shake{animation:shake .1s infinite}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;white-space:pre-wrap;font-size:14px}
-.receipt{font:14px/1.7 "Courier New",monospace;border:1px dashed var(--acc);color:#dfe6ea}
-.clock{font-size:70px;font-weight:700;text-align:center;line-height:1;padding:8px 0;color:var(--acc);background:#06080a;border:1px solid var(--line);border-radius:12px;letter-spacing:.08em;text-shadow:0 0 22px rgba(var(--rgb),.75);font-variant-numeric:tabular-nums}
-#pulse{width:100%;height:34px;overflow:visible}
+.mid{display:flex;flex-direction:column;gap:6px}
+.die{--s:30px;display:inline-block;width:var(--s);height:var(--s);perspective:240px;transform-style:preserve-3d;vertical-align:middle;margin-right:8px}
+.cube{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform .25s ease-out}
+.fc{position:absolute;inset:0;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:15%;background:var(--dface);border:1px solid var(--dline);border-radius:18%}
+.fc u{width:78%;aspect-ratio:1;border-radius:50%;background:var(--dpip);place-self:center}
+.f1{transform:translateZ(calc(var(--s)/2))}.f2{transform:rotateY(90deg) translateZ(calc(var(--s)/2))}.f3{transform:rotateX(90deg) translateZ(calc(var(--s)/2))}
+.f4{transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}.f5{transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}.f6{transform:rotateY(180deg) translateZ(calc(var(--s)/2))}
+.clock{font-size:60px;text-align:center;line-height:1;padding:10px 0;border-radius:12px;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--clockc);background:var(--clockbg);border:var(--clockb);text-shadow:var(--clocks)}
+#pulse{display:none;width:100%;height:34px;overflow:visible}
 #pulse polyline{fill:none;stroke:var(--acc);stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px var(--acc))}
 #pulse .spike{display:none;transform-origin:center}
 .ai-speaking #pulse .spike{display:block}.ai-speaking #pulse .flat{display:none}
-.log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:120px;max-height:36vh}
-.msg{padding:11px 13px;border-radius:10px;max-width:90%;white-space:pre-wrap;font-size:15px}
-.msg.you{align-self:flex-end;background:rgba(var(--rgb),.1);border:1px solid rgba(var(--rgb),.35)}
-.msg.ai{align-self:flex-start;background:var(--panel);border:1px solid var(--line)}
-.mic{width:100px;height:100px;border-radius:50%;align-self:center;text-align:center;padding:0;font-weight:800;color:#031210;border:none;background:radial-gradient(circle at 35% 28%,#fff,var(--acc) 55%);box-shadow:0 0 36px rgba(var(--rgb),.6)}
-.err{color:#ff9db1;font-size:14px;min-height:20px}
+#deck{display:none;position:relative;width:150px;height:96px;align-self:center}
+.record{position:absolute;left:0;top:2px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#eee8d5 0 12%,#222 13% 16%,transparent 17%),repeating-radial-gradient(circle,#0a0a0a 0 2px,#1d1d1d 2px 4px);box-shadow:0 0 0 3px #1a1a1a,0 6px 14px #000}
+.arm{position:absolute;right:14px;top:2px;width:6px;height:74px;border-radius:3px;background:linear-gradient(#cfcfcf,#7a7a7a);transform-origin:top center;transform:rotate(-24deg);transition:transform .7s}
+.ai-speaking .arm{transform:rotate(14deg)}
+.log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:110px;max-height:34vh}
+.msg{padding:11px 13px;border-radius:var(--r);max-width:90%;white-space:pre-wrap;font-size:15px}
+.msg.you{align-self:flex-end;background:rgba(var(--rgb),.14);border:1px solid rgba(var(--rgb),.4)}
+.msg.ai{align-self:flex-start;background:var(--panel);border:1px solid var(--panel-line)}
+.mic{width:100px;height:100px;border-radius:50%;align-self:center;text-align:center;padding:0;font-weight:700;border:none;color:var(--micc);background:var(--micbg);box-shadow:var(--mics)}
+.err{color:#f0a6a0;font-size:14px;min-height:20px}
+.receipt{white-space:normal;font-size:15px;background:var(--rbg);color:var(--rc);border:var(--rb);border-radius:4px}
+.lt{font-style:italic;opacity:.75;margin-bottom:4px}
+.lh{font-weight:700;letter-spacing:.14em;border-bottom:2px solid currentColor;padding-bottom:3px;margin:14px 0 6px;font-size:13px}
+.lb{margin:0;color:inherit;font-size:15px;line-height:1.6}
 @media (prefers-reduced-motion:no-preference){
  .mic[aria-pressed=true]{animation:ripple 1.6s ease-out infinite}
+ .ai-speaking .record{animation:spin 1.8s linear infinite}
  .ai-speaking #pulse .spike{animation:jitter .35s steps(3) infinite}
+ .die.roll{animation:dieSpin .5s cubic-bezier(.34,1.56,.64,1)}
 }
-@keyframes glitch{0%{transform:translateX(-3px) skewX(2deg)}100%{transform:translateX(3px) skewX(-2deg)}}
-@keyframes snap{0%{box-shadow:0 0 90px 24px rgba(var(--rgb),.9);transform:scale(1.05)}100%{transform:scale(1)}}
-@keyframes shake{0%{transform:rotate(-18deg)}50%{transform:rotate(16deg) translateY(-2px)}100%{transform:rotate(-14deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes jitter{0%{transform:scaleY(1)}33%{transform:scaleY(.35)}66%{transform:scaleY(1.25)}}
-@keyframes ripple{0%{box-shadow:0 0 36px rgba(var(--rgb),.6),0 0 0 0 rgba(var(--rgb),.5)}100%{box-shadow:0 0 36px rgba(var(--rgb),.6),0 0 0 44px rgba(var(--rgb),0)}}
+@keyframes dieSpin{0%{transform:rotate3d(1,1,0,0deg) scale(1)}60%{transform:rotate3d(1,1,0,360deg) scale(.9)}100%{transform:rotate3d(1,1,0,360deg) scale(1)}}
+@keyframes glitch{0%{transform:translateX(-3px) skewX(2deg)}100%{transform:translateX(3px) skewX(-2deg)}}
+@keyframes snap{0%{box-shadow:0 0 80px 20px rgba(var(--rgb),.8);transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(var(--rgb),.55)}100%{box-shadow:0 0 0 44px rgba(var(--rgb),0)}}
+
+body[data-theme=neon] h1{text-transform:uppercase;letter-spacing:.04em}
+body[data-theme=neon] h2{text-transform:uppercase;letter-spacing:.08em}
+body[data-theme=neon] .orb{position:absolute;right:-40px;top:-8px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.75;filter:blur(2px);background:radial-gradient(circle at 35% 30%,rgba(var(--rgb),.9),rgba(var(--rgb),.15) 55%,transparent 70%)}
+body[data-theme=neon] .hand{display:flex;flex-direction:column;gap:12px;margin:4px 0}
+body[data-theme=neon] .pcard{position:relative;border:1px solid rgba(var(--rgb),.5);border-radius:22px;background:linear-gradient(160deg,rgba(var(--rgb),.16),rgba(255,255,255,.03));box-shadow:0 0 34px rgba(var(--rgb),.25),inset 0 0 30px rgba(var(--rgb),.06);padding:28px 22px;overflow:hidden}
+body[data-theme=neon] #scard{align-self:flex-start;border-radius:999px;padding:10px 18px}
+body[data-theme=neon] .idx,body[data-theme=neon] #deckback,body[data-theme=neon] .pcard i,body[data-theme=neon] .pcard::before{display:none}
+body[data-theme=neon] #scard .mid{flex-direction:row;align-items:baseline;gap:10px}
+body[data-theme=neon] .pcard .tag{font-size:11px}
+body[data-theme=neon] .ptext{font-family:var(--display);font-weight:700;font-size:clamp(22px,6.4vw,28px);line-height:1.2;color:#fff}
+body[data-theme=neon] #sideText{font-family:var(--display);font-weight:700;font-size:18px;color:var(--acc);letter-spacing:.06em}
+body[data-theme=neon] #pulse{display:block}
+body[data-theme=neon] button.primary{border-radius:14px}
 </style>
 </head>
-<body data-mode="discussion">
+<body data-mode="discussion" data-theme="neon">
 <div class="grain"></div>
 <main>
 
 <section id="home">
-  <div class="tag">♠ ♦ the thinking table ♣ ♥</div>
-  <h1>Think</h1>
-  <p>Deal a topic. Think out loud. Take on an AI that pushes back.</p>
-  <div class="rules">
-    <div class="rule"><b>THE DEAL</b>A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap Read up for a quick overview first.</div>
-    <div class="rule disc"><b>DISCUSSION</b>Freely think a topic through, in detail.</div>
-    <div class="rule deb"><b>DEBATE</b>A side is picked for you. Counter the AI with sound logic.</div>
-    <div class="rule"><b>VOICE FIRST</b>Talk it out loud, or switch to typing any time. Replies are short, so jump in whenever you like. Tap Speak to cut the AI off.</div>
+  <div class="hero"><div class="orb"></div>
+    <div class="tag">the thinking game</div>
+    <h1>Think<br>out loud.</h1>
+    <p class="lead">Get a random topic. Say what you really think. Then get challenged.</p>
   </div>
-  <div class="rules"><div class="rule"><b>PICK YOUR STYLE</b><u>Speak &amp; hear</u> (default): the full experience, best with headphones.<br><u>Quiet</u>: you speak, the AI replies in text only.<br><u>Silent</u>: you type, the AI replies in text only, which works anywhere.<br><i>In a public place? Try Quiet or Silent.</i></div></div>
-  <button class="primary" id="goAI">Take a seat</button>
-  <button disabled>Play with a person (coming soon)</button>
+  <div class="flow">
+    <p><b>The deal.</b> A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap <em>Read up</em> for a quick overview first.</p>
+    <div class="modes">
+      <div class="mode disc"><b>Discussion</b><span>Freely think a topic through, in detail.</span></div>
+      <div class="mode deb"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span></div>
+    </div>
+    <p><b>Voice first.</b> Talk it out, or switch to typing any time. Replies are short, so jump in whenever you like: tap Speak to cut the AI off.</p>
+  </div>
+  <div><label>How do you want to play?</label><div class="pills"><button class="pill" data-style="full" aria-pressed="true">Speak &amp; hear</button><button class="pill" data-style="quiet" aria-pressed="false">Quiet</button><button class="pill" data-style="silent" aria-pressed="false">Silent</button></div><div class="stylenote"></div></div>
+  <button class="primary" id="goAI">Start</button>
+  <small style="text-align:center">Playing with a person: coming soon</small>
 </section>
 
 <section id="setup" hidden>
@@ -108,19 +148,11 @@ body[data-mode=debate] .pcard i{position:absolute;top:0;left:0;right:0;height:9p
     <button id="mDisc" class="mbtn m-disc" aria-pressed="true"><b>Discussion</b><br><small>Low stakes. Think it through.</small></button>
     <button id="mDeb" class="mbtn m-deb" aria-pressed="false"><b>Debate</b><br><small>High stakes. Defend your side.</small></button>
   </div>
-  <div>
-    <label>How do you want to play?</label>
-    <div class="styles" id="styles">
-      <button data-style="full" aria-pressed="true"><b>Speak &amp; hear</b><small>The full experience. Best with headphones.</small></button>
-      <button data-style="quiet" aria-pressed="false"><b>Quiet</b><small>You speak, the AI replies in text only.</small></button>
-      <button data-style="silent" aria-pressed="false"><b>Silent</b><small>You type, the AI replies in text only. Works anywhere.</small></button>
-    </div>
-    <small>In a public place? Try Quiet or Silent.</small>
-  </div>
+  <div><label>How do you want to play?</label><div class="pills"><button class="pill" data-style="full" aria-pressed="true">Speak &amp; hear</button><button class="pill" data-style="quiet" aria-pressed="false">Quiet</button><button class="pill" data-style="silent" aria-pressed="false">Silent</button></div><div class="stylenote"></div></div>
   <div>
     <label>Round length (minutes)</label>
     <div class="row chips" id="chips" style="margin-top:6px">
-      <button data-min="1" aria-pressed="false">1</button><button data-min="3" aria-pressed="false">3</button><button data-min="5" aria-pressed="true">5</button><button data-min="10" aria-pressed="false">10</button>
+      <button data-min="3" aria-pressed="false">3</button><button data-min="5" aria-pressed="true">5</button><button data-min="10" aria-pressed="false">10</button>
     </div>
   </div>
   <details><summary>Voice settings (optional)</summary><div>
@@ -131,20 +163,26 @@ body[data-mode=debate] .pcard i{position:absolute;top:0;left:0;right:0;height:9p
       <button id="testVoice" style="flex:0 0 auto">Test voice</button>
     </div>
   </div></details>
-  <button class="primary" id="toTopic">Deal me a topic</button>
+  <button class="primary" id="toTopic">Get a topic</button>
 </section>
 
 <section id="topic" hidden>
   <button class="ghost" data-go="setup">Back</button>
-  <div class="pcard" id="pcard"><i></i><div class="tag" id="suitText"></div><div class="ptext" id="topicText"></div><div class="pos" id="posText"></div></div>
+  <div class="hand">
+    <div id="deckback"></div>
+    <div class="pcard" id="pcard"><i></i><div class="idx tl"><b class="rk"></b><span class="sy"></span></div><div class="mid"><div class="tag" id="suitText"></div><div class="ptext" id="topicText"></div></div><div class="idx br"><b class="rk"></b><span class="sy"></span></div></div>
+    <div class="pcard" id="scard"><i></i><div class="idx tl"><b class="sk"></b><span class="ssy"></span></div><div class="mid"><div class="tag" id="sideTag"></div><div id="sideText"></div></div><div class="idx br"><b class="sk"></b><span class="ssy"></span></div></div>
+  </div>
+  <div class="sidenote" id="sideNote"></div>
   <div class="card" id="primer"></div>
-  <div class="row"><button id="getPrimer">Read up</button><button id="shuffle"><span id="dice">⚄</span> New topic</button></div>
+  <div class="row"><button id="getPrimer">Read up</button><button id="shuffle"><span class="die" id="dice"></span> New topic</button></div>
   <p class="err" id="topicErr"></p>
   <button class="primary" id="start">Start talking</button>
 </section>
 
 <section id="convo" hidden>
   <div class="clock" id="clock">05:00</div>
+  <div id="deck"><div class="record"></div><div class="arm"></div></div>
   <svg id="pulse" viewBox="0 0 300 40" preserveAspectRatio="none"><polyline class="flat" points="0,20 300,20"/><polyline class="spike" points="0,20 40,20 50,4 62,36 74,10 86,28 98,20 150,20 160,2 172,38 184,12 196,26 208,20 300,20"/></svg>
   <div class="log" id="log" aria-live="polite"></div>
   <p class="err" id="convoErr"></p>
@@ -153,14 +191,14 @@ body[data-mode=debate] .pcard i{position:absolute;top:0;left:0;right:0;height:9p
   <button class="mic" id="mic" aria-pressed="false">Speak</button>
   <small id="micHint" style="text-align:center">Tap Speak any time, even mid-reply, to jump in.</small>
   <div class="row" id="typeBox" hidden><input id="typeIn" type="text" placeholder="Type your answer…" autocomplete="off"><button class="primary" id="typeSend" style="margin:0;flex:0 0 auto">Send</button></div>
-  <div class="row"><button class="ghost" id="typeToggle">Type instead</button><button class="ghost" id="end" style="text-align:right">Fold</button></div>
+  <div class="row"><button class="ghost" id="typeToggle">Type instead</button><button class="ghost" id="end" style="text-align:right">End session</button></div>
 </section>
 
 <section id="reflect" hidden>
-  <div class="tag">the payout</div>
+  <div class="tag">the review</div>
   <h2>The Ledger</h2>
-  <div class="card receipt" id="reflectText">Tallying the table…</div>
-  <button class="primary" id="again">Deal again</button>
+  <div class="card receipt" id="reflectText">Writing your review…</div>
+  <button class="primary" id="again">Play again</button>
 </section>
 
 </main>
@@ -203,6 +241,8 @@ $("goAI").onclick = () => show("setup");
 const SEEN_KEY = "think_seen", pick = a => a[Math.floor(Math.random() * a.length)];
 function seenSet() { try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || "[]")); } catch (e) { return new Set(); } }
 function remember(id) { try { localStorage.setItem(SEEN_KEY, JSON.stringify([...seenSet(), id].slice(-4000))); } catch (e) {} }
+const RANKS = ["A","2","3","4","5","6","7","8","9","10","J","Q"], SUITS = ["♠","♥","♣","♦"];
+function face(c) { const k = Object.keys(window.DECK || {}).indexOf(c.suit); return k < 0 ? { rk: "JK", sy: "★" } : { rk: RANKS[k % 12], sy: SUITS[k % 4] }; }
 function genCard() {
   const T = window.THINGS, a = pick(T);
   if (Math.random() < 0.35) { const p = pick(window.SINGLE); return { t: p.replace("{a}", a), suit: "Wild Mix", id: "g:" + p + a }; }
@@ -222,6 +262,44 @@ function dealCard(retry = true) {
   return pick(pool.length ? pool : [{ t: TOPICS[0], suit: "General", id: TOPICS[0] }]);
 }
 
+
+/* The die: a real 3D cube with pips */
+const PIPS = { 1: [5], 2: [1, 9], 3: [1, 5, 9], 4: [1, 3, 7, 9], 5: [1, 3, 5, 7, 9], 6: [1, 3, 4, 6, 7, 9] };
+const FACE_ROT = { 1: "", 2: "rotateY(-90deg)", 3: "rotateX(-90deg)", 4: "rotateX(90deg)", 5: "rotateY(90deg)", 6: "rotateY(180deg)" };
+(function () {
+  const c = document.createElement("span"); c.className = "cube"; c.style.transform = "rotateX(-22deg) rotateY(30deg)";
+  for (let n = 1; n <= 6; n++) {
+    const f = document.createElement("i"); f.className = "fc f" + n;
+    PIPS[n].forEach(p => { const u = document.createElement("u"); u.style.gridArea = Math.ceil(p / 3) + "/" + (((p - 1) % 3) + 1); f.appendChild(u); });
+    c.appendChild(f);
+  }
+  $("dice").appendChild(c);
+})();
+function rollDie() {
+  const d = $("dice"), c = d.firstChild, n = 1 + Math.floor(Math.random() * 6);
+  d.classList.remove("roll"); void d.offsetWidth; d.classList.add("roll");
+  setTimeout(() => { c.style.transform = "rotateX(-22deg) rotateY(30deg) " + FACE_ROT[n]; }, 500);
+}
+
+/* Ledger: clear, sectioned receipt */
+function renderLedger(text) {
+  const box = $("reflectText"); box.textContent = "";
+  const t = document.createElement("div"); t.className = "lt"; t.textContent = S.topic; box.appendChild(t);
+  const heads = /^(BLUFFS|STRONG HANDS|VERDICT|SPARKS|GAPS|TRADE-OFFS|EVIDENCE)\b(\s*\([^)]*\))?\s*[:\-–—]?\s*/i;
+  let cur = null;
+  text.split("\n").forEach(line => {
+    const l = line.replace(/[*#_]/g, "").trim(); if (!l) return;
+    const m = l.match(heads);
+    if (m) {
+      const h = document.createElement("div"); h.className = "lh"; h.textContent = m[1].toUpperCase(); box.appendChild(h);
+      cur = document.createElement("p"); cur.className = "lb"; cur.textContent = l.slice(m[0].length).trim(); box.appendChild(cur);
+    } else {
+      if (!cur) { cur = document.createElement("p"); cur.className = "lb"; box.appendChild(cur); }
+      cur.textContent += (cur.textContent ? " " : "") + l;
+    }
+  });
+}
+
 /* Setup */
 function setMode(m) {
   S.mode = m; document.body.dataset.mode = m;
@@ -234,10 +312,14 @@ document.querySelectorAll("#chips button").forEach(b => b.onclick = () => {
   S.mins = +b.dataset.min;
   document.querySelectorAll("#chips button").forEach(x => x.setAttribute("aria-pressed", x === b));
 });
-document.querySelectorAll("#styles button").forEach(b => b.onclick = () => {
-  S.style = b.dataset.style;
-  document.querySelectorAll("#styles button").forEach(x => x.setAttribute("aria-pressed", x === b));
-});
+const STYLE_NOTE = { full: "Speak & hear: the full experience. Best with headphones.", quiet: "Quiet: you speak, the AI replies in text only.", silent: "Silent: you type, the AI replies in text only. Works anywhere." };
+function setStyle(v) {
+  S.style = v;
+  document.querySelectorAll("[data-style]").forEach(b => b.setAttribute("aria-pressed", b.dataset.style === v));
+  document.querySelectorAll(".stylenote").forEach(e => e.textContent = STYLE_NOTE[v] + " In a public place? Try Quiet or Silent.");
+}
+document.querySelectorAll("[data-style]").forEach(b => b.onclick = () => setStyle(b.dataset.style));
+setStyle("full");
 $("toTopic").onclick = () => { newTopic(false); show("topic"); };
 
 /* Topic: dealt from the built-in deck (instant, no AI call) */
@@ -248,15 +330,21 @@ function newTopic(anim = true) {
   $("topicErr").textContent = "";
   const deal = () => {
     S.topic = t; S.suit = c.suit; remember(c.id); $("suitText").textContent = c.suit; $("topicText").textContent = t;
-    $("posText").textContent = S.mode === "debate" ? "Your side: " + S.position : "Open table";
+    const f = face(c), deb = S.mode === "debate", sy = deb ? "♣" : "★", all = (q, v) => document.querySelectorAll(q).forEach(e => e.textContent = v);
+    $("pcard").dataset.sym = f.sy; $("pcard").classList.toggle("red", f.sy === "♥" || f.sy === "♦");
+    all(".rk", f.rk); all(".sy", f.sy);
+    $("scard").dataset.sym = sy; $("sideText").textContent = deb ? S.position.toUpperCase() : "OPEN TABLE";
+    $("sideTag").textContent = deb ? "you’ll argue" : "no sides";
+    $("sideNote").textContent = deb ? "You’ll be arguing " + S.position.toUpperCase() + " this. The AI argues " + (S.position === "for" ? "AGAINST" : "FOR") + " and pushes back, so defend your side." : "Open table: no sides. Think it through freely and the AI will help you dig deeper.";
+    all(".sk", deb ? "K" : "JK"); all(".ssy", sy);
   };
   if (!anim) return deal();
   const card = $("pcard"), lock = v => { $("shuffle").disabled = v; $("getPrimer").disabled = v; };
-  card.classList.add("rolling"); $("dice").classList.add("shake"); lock(true);
+  card.classList.add("rolling"); rollDie(); lock(true);
   setTimeout(() => {
-    deal(); card.classList.remove("rolling"); $("dice").classList.remove("shake");
+    deal(); card.classList.remove("rolling");
     card.classList.add("snap"); lock(false); setTimeout(() => card.classList.remove("snap"), 450);
-  }, 450);
+  }, 500);
 }
 $("shuffle").onclick = () => newTopic(true);
 $("getPrimer").onclick = async () => {
@@ -422,10 +510,10 @@ async function finish() {
   if (S.listening) { S.stopping = true; clearInterval(S.tick); clearTimeout(S.restartTimer); if (S.rec) { S.rec.onend = null; try { S.rec.stop(); } catch (e) {} } setListening(false); $("live").textContent = ""; }
   show("reflect");
   if (!S.history.length) { $("reflectText").textContent = "No conversation to summarize. Start another session when you’re ready."; return; }
-  $("reflectText").textContent = "Tallying the table…";
+  $("reflectText").textContent = "Writing your review…";
   const transcript = S.history.map(m => (m.role === "user" ? "User: " : "AI: ") + m.content).join("\n");
   try {
-    $("reflectText").textContent = await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\n" + (S.mode === "debate" ? "Write a scorecard for the user with exactly three short sections titled BLUFFS (their weak points), STRONG HANDS (their best logic), and VERDICT (one sentence on who argued better and why)." : "Write a recap for the user with exactly three short sections titled SPARKS (their best ideas), GAPS (leaps worth rechecking), and TRADE-OFFS (what their view gains and loses).") + " Plain text, no markdown symbols, under 140 words in total." + (S.suit === "Myths & Conspiracies" ? " Finish with a line starting EVIDENCE: saying where the evidence actually stands." : "") + "" }], 800);
+    renderLedger(await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\n" + (S.mode === "debate" ? "Write a scorecard for the user with exactly three short sections titled BLUFFS (their weak points), STRONG HANDS (their best logic), and VERDICT (one sentence on who argued better and why)." : "Write a recap for the user with exactly three short sections titled SPARKS (their best ideas), GAPS (leaps worth rechecking), and TRADE-OFFS (what their view gains and loses).") + " Put each section title in capitals on its own line, then 1 or 2 short plain sentences. No markdown symbols. Under 120 words in total." + (S.suit === "Myths & Conspiracies" ? " Finish with a line starting EVIDENCE: saying where the evidence actually stands." : "") + "" }], 800));
   } catch (e) { $("reflectText").textContent = e.message; }
 }
 $("again").onclick = () => show("setup");
