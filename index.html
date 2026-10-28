@@ -7,125 +7,172 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2236%22 fill=%22%239fe7f5%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--ice:#CFF4FF;--cy:#5EE6F5;--vi:#8B7CFF;--muted:#8FB3C2;--deep:#031018;--glass:rgba(8,32,46,.55);--line:rgba(120,220,255,.2);--danger:#FF8FA0;color-scheme:dark}
+:root{--bg:#0b0d10;--panel:#12161b;--line:#232b34;--text:#EDEFF2;--muted:#8A94A0;--acc:#00ffcc;--rgb:0,255,204;color-scheme:dark}
+body[data-mode=debate]{--acc:#a855ff;--rgb:168,85,255}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:var(--deep);color:var(--ice);font:16px/1.55 Manrope,system-ui,sans-serif;display:flex;justify-content:center;overflow-x:hidden}
-#bg{position:fixed;inset:-24px;z-index:-3;background:url("bg.jpg") center 30%/cover no-repeat;filter:blur(3px)}
-#veil{position:fixed;inset:0;z-index:-2;background:linear-gradient(rgba(2,12,20,.35),rgba(2,12,20,.6))}
-.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-main{width:100%;max-width:480px;padding:max(24px,env(safe-area-inset-top)) 22px max(24px,env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100%}
-section{display:flex;flex-direction:column;flex:1;gap:18px}
-section[hidden]{display:none}
-h1,h2,.big{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;margin:0;color:#EAFBFF;text-shadow:0 0 28px rgba(94,230,245,.45)}
-h1{font-size:58px;line-height:1;letter-spacing:-.01em;margin-top:8vh}
-h2{font-size:34px;line-height:1.1;margin-top:6px}
+body{background:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.16),transparent 55%),var(--bg);background-attachment:fixed;color:var(--text);font:16px/1.55 Manrope,system-ui,sans-serif;display:flex;justify-content:center;overflow-x:hidden}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main{width:100%;max-width:480px;padding:max(22px,env(safe-area-inset-top)) 20px max(22px,env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100%}
+section{display:flex;flex-direction:column;flex:1;gap:16px}
+section[hidden],[hidden]{display:none!important}
+h1,h2,.tag,.clock,.mbtn b,.chips button,.rule b,.ptext{font-family:"Chakra Petch",sans-serif}
+h1{font-size:68px;line-height:1;margin:3vh 0 0;text-transform:uppercase;letter-spacing:.06em;color:#fff;text-shadow:0 0 24px rgba(var(--rgb),.7)}
+h2{font-size:26px;margin:4px 0 0;text-transform:uppercase;letter-spacing:.08em}
+.tag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
 p{margin:0;color:var(--muted)}
 button,input{font:inherit;color:inherit}
-button{cursor:pointer;text-align:left;padding:14px 16px;border-radius:16px;background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-button:focus-visible,input:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
-button.primary{margin-top:auto;text-align:center;font-weight:800;color:#021018;border:none;background:linear-gradient(135deg,var(--cy),var(--vi));box-shadow:0 0 34px rgba(94,230,245,.35)}
-button.ghost{background:none;border:none;box-shadow:none;color:var(--muted);padding:8px 0;backdrop-filter:none}
-button[aria-pressed=true]:not(.mic){border-color:var(--cy);background:rgba(20,70,95,.65);box-shadow:0 0 22px rgba(94,230,245,.2)}
-button:disabled{opacity:.45;cursor:not-allowed}
+button{cursor:pointer;text-align:left;padding:13px 15px;border-radius:10px;background:var(--panel);border:1px solid var(--line)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button.primary{margin-top:auto;text-align:center;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#031210;border:none;background:var(--acc);box-shadow:0 0 28px rgba(var(--rgb),.45)}
+button.ghost{background:none;border:none;color:var(--muted);padding:8px 0}
+button:disabled{opacity:.4;cursor:not-allowed}
 .row{display:flex;gap:10px}.row>*{flex:1}
-small{color:var(--muted);font-size:13px}
-label{font-size:14px;color:var(--muted)}
-input[type=password]{width:100%;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:6px}
-input[type=range]{width:100%;accent-color:var(--cy)}
-.big{font-size:76px;text-align:center;font-variant-numeric:tabular-nums;line-height:1}
-.log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;min-height:140px;max-height:44vh}
-.msg{padding:12px 14px;border-radius:16px;max-width:88%;white-space:pre-wrap;border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.msg.you{align-self:flex-end;background:rgba(139,124,255,.22)}
-.msg.ai{align-self:flex-start;background:var(--glass)}
-.mic{width:108px;height:108px;border-radius:50%;align-self:center;text-align:center;padding:0;font-weight:800;font-size:15px;color:#02202b;border:none;background:radial-gradient(circle at 35% 28%,#f2fdff,var(--cy) 48%,#2a7aa6);box-shadow:0 0 40px rgba(94,230,245,.5)}
-.err{color:var(--danger);font-size:14px;min-height:20px}
-.card{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:16px;white-space:pre-wrap;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+small,label{color:var(--muted);font-size:13px}
+input[type=text]{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+input[type=range]{width:100%;accent-color:var(--acc)}
+select{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:6px;color:inherit;font:inherit}
+option{background:#12161b}
+.rules{display:flex;flex-direction:column;gap:8px}
+.rule{background:var(--panel);border-left:3px solid var(--acc);border-radius:6px;padding:10px 12px;font-size:14px;color:var(--muted)}
+.rule b{display:block;font-size:12px;letter-spacing:.16em;color:#fff}
+.rule.disc{border-color:#00ffcc}.rule.deb{border-color:#a855ff}
+.mbtn{--c:0,255,204;border-color:rgba(var(--c),.3)}.mbtn.m-deb{--c:168,85,255}
+.mbtn b{color:rgb(var(--c));font-size:18px;letter-spacing:.06em;text-transform:uppercase}
+.mbtn[aria-pressed=true]{border-color:rgb(var(--c));box-shadow:0 0 22px rgba(var(--c),.45),inset 0 0 16px rgba(var(--c),.12)}
+.styles{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.styles button b{display:block;font-family:"Chakra Petch",sans-serif;font-size:16px;letter-spacing:.05em;text-transform:uppercase}
+.styles button[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 16px rgba(var(--rgb),.4)}
+summary{cursor:pointer;color:var(--muted);font-size:14px;padding:4px 0}
+.chips button{text-align:center;font-size:22px;font-weight:700}
+.chips button[aria-pressed=true]{border-color:var(--acc);color:var(--acc);box-shadow:0 0 16px rgba(var(--rgb),.4)}
+.pcard{position:relative;width:min(74%,290px);aspect-ratio:5/7;margin:4px auto;padding:22px 18px;border:2px solid var(--acc);border-radius:18px;background:linear-gradient(160deg,#171c23,#0c0f13);box-shadow:0 0 34px rgba(var(--rgb),.4);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
+.pcard::before{content:"◆";position:absolute;top:10px;left:14px;color:var(--acc);font-size:16px}
+.pcard::after{content:"◆";position:absolute;bottom:10px;right:14px;color:var(--acc);font-size:16px}
+body[data-mode=debate] .pcard{border-radius:6px;border-width:3px}
+body[data-mode=debate] .pcard i{position:absolute;top:0;left:0;right:0;height:9px;background:repeating-linear-gradient(135deg,var(--acc) 0 8px,transparent 8px 16px)}
+.ptext{font-size:23px;line-height:1.25;font-weight:700;color:#fff}
+.pos{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
+.pcard.rolling{filter:blur(4px);animation:glitch .12s steps(2) infinite}
+.pcard.snap{animation:snap .45s ease-out}
+#dice{display:inline-block;font-size:20px}#dice.shake{animation:shake .1s infinite}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;white-space:pre-wrap;font-size:14px}
+.receipt{font:14px/1.7 "Courier New",monospace;border:1px dashed var(--acc);color:#dfe6ea}
+.clock{font-size:70px;font-weight:700;text-align:center;line-height:1;padding:8px 0;color:var(--acc);background:#06080a;border:1px solid var(--line);border-radius:12px;letter-spacing:.08em;text-shadow:0 0 22px rgba(var(--rgb),.75);font-variant-numeric:tabular-nums}
+#pulse{width:100%;height:34px;overflow:visible}
+#pulse polyline{fill:none;stroke:var(--acc);stroke-width:2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px var(--acc))}
+#pulse .spike{display:none;transform-origin:center}
+.ai-speaking #pulse .spike{display:block}.ai-speaking #pulse .flat{display:none}
+.log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:120px;max-height:36vh}
+.msg{padding:11px 13px;border-radius:10px;max-width:90%;white-space:pre-wrap;font-size:15px}
+.msg.you{align-self:flex-end;background:rgba(var(--rgb),.1);border:1px solid rgba(var(--rgb),.35)}
+.msg.ai{align-self:flex-start;background:var(--panel);border:1px solid var(--line)}
+.mic{width:100px;height:100px;border-radius:50%;align-self:center;text-align:center;padding:0;font-weight:800;color:#031210;border:none;background:radial-gradient(circle at 35% 28%,#fff,var(--acc) 55%);box-shadow:0 0 36px rgba(var(--rgb),.6)}
+.err{color:#ff9db1;font-size:14px;min-height:20px}
 @media (prefers-reduced-motion:no-preference){
-   .mic[aria-pressed=true]{animation:ripple 1.6s ease-out infinite}
- button{transition:border-color .2s,box-shadow .2s}
+ .mic[aria-pressed=true]{animation:ripple 1.6s ease-out infinite}
+ .ai-speaking #pulse .spike{animation:jitter .35s steps(3) infinite}
 }
-@keyframes ripple{0%{box-shadow:0 0 40px rgba(94,230,245,.6),0 0 0 0 rgba(94,230,245,.5)}100%{box-shadow:0 0 40px rgba(94,230,245,.6),0 0 0 46px rgba(94,230,245,0)}}
+@keyframes glitch{0%{transform:translateX(-3px) skewX(2deg)}100%{transform:translateX(3px) skewX(-2deg)}}
+@keyframes snap{0%{box-shadow:0 0 90px 24px rgba(var(--rgb),.9);transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes shake{0%{transform:rotate(-18deg)}50%{transform:rotate(16deg) translateY(-2px)}100%{transform:rotate(-14deg)}}
+@keyframes jitter{0%{transform:scaleY(1)}33%{transform:scaleY(.35)}66%{transform:scaleY(1.25)}}
+@keyframes ripple{0%{box-shadow:0 0 36px rgba(var(--rgb),.6),0 0 0 0 rgba(var(--rgb),.5)}100%{box-shadow:0 0 36px rgba(var(--rgb),.6),0 0 0 44px rgba(var(--rgb),0)}}
 </style>
 </head>
-<body>
-<div id="bg"></div>
-<div id="veil"></div>
+<body data-mode="discussion">
 <div class="grain"></div>
 <main>
 
 <section id="home">
-  <h1>Think out loud.</h1>
-  <p>Daily voice discussions and debates. Pick a topic, set a timer, and talk it through.</p>
-  <button id="goAI">Talk with AI</button>
-  <button disabled>Talk with a person (coming soon)</button>
-  <p class="err" id="homeErr"></p>
+  <div class="tag">♠ ♦ the thinking table ♣ ♥</div>
+  <h1>Think</h1>
+  <p>Deal a topic. Think out loud. Take on an AI that pushes back.</p>
+  <div class="rules">
+    <div class="rule"><b>THE DEAL</b>A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap Read up for a quick overview first.</div>
+    <div class="rule disc"><b>DISCUSSION</b>Freely think a topic through, in detail.</div>
+    <div class="rule deb"><b>DEBATE</b>A side is picked for you. Counter the AI with sound logic.</div>
+    <div class="rule"><b>VOICE FIRST</b>Talk it out loud, or switch to typing any time. Replies are short, so jump in whenever you like. Tap Speak to cut the AI off.</div>
+  </div>
+  <div class="rules"><div class="rule"><b>PICK YOUR STYLE</b><u>Speak &amp; hear</u> (default): the full experience, best with headphones.<br><u>Quiet</u>: you speak, the AI replies in text only.<br><u>Silent</u>: you type, the AI replies in text only, which works anywhere.<br><i>In a public place? Try Quiet or Silent.</i></div></div>
+  <button class="primary" id="goAI">Take a seat</button>
+  <button disabled>Play with a person (coming soon)</button>
 </section>
 
 <section id="setup" hidden>
   <button class="ghost" data-go="home">Back</button>
-  <h2>Set up your session</h2>
+  <h2>Choose your table</h2>
   <div class="row">
-    <button id="mDisc" aria-pressed="true">Discussion<br><small>Explore both sides</small></button>
-    <button id="mDeb" aria-pressed="false">Debate<br><small>Defend a position</small></button>
+    <button id="mDisc" class="mbtn m-disc" aria-pressed="true"><b>Discussion</b><br><small>Low stakes. Think it through.</small></button>
+    <button id="mDeb" class="mbtn m-deb" aria-pressed="false"><b>Debate</b><br><small>High stakes. Defend your side.</small></button>
   </div>
   <div>
-    <label for="mins">Length: <b id="minsOut">10</b> min</label>
-    <input id="mins" type="range" min="3" max="30" value="10">
+    <label>How do you want to play?</label>
+    <div class="styles" id="styles">
+      <button data-style="full" aria-pressed="true"><b>Speak &amp; hear</b><small>The full experience. Best with headphones.</small></button>
+      <button data-style="quiet" aria-pressed="false"><b>Quiet</b><small>You speak, the AI replies in text only.</small></button>
+      <button data-style="silent" aria-pressed="false"><b>Silent</b><small>You type, the AI replies in text only. Works anywhere.</small></button>
+    </div>
+    <small>In a public place? Try Quiet or Silent.</small>
   </div>
-  <button class="primary" id="toTopic">Pick a topic</button>
+  <div>
+    <label>Round length (minutes)</label>
+    <div class="row chips" id="chips" style="margin-top:6px">
+      <button data-min="1" aria-pressed="false">1</button><button data-min="3" aria-pressed="false">3</button><button data-min="5" aria-pressed="true">5</button><button data-min="10" aria-pressed="false">10</button>
+    </div>
+  </div>
+  <details><summary>Voice settings (optional)</summary><div>
+    <label for="voice">AI voice</label>
+    <select id="voice"><option value="">Device default</option></select>
+    <div class="row" style="margin-top:10px;align-items:end">
+      <div><label for="rate">Speed: <b id="rateOut">1.0</b>×</label><input id="rate" type="range" min="0.7" max="1.3" step="0.1" value="1"></div>
+      <button id="testVoice" style="flex:0 0 auto">Test voice</button>
+    </div>
+  </div></details>
+  <button class="primary" id="toTopic">Deal me a topic</button>
 </section>
 
 <section id="topic" hidden>
   <button class="ghost" data-go="setup">Back</button>
-  <h2 id="topicText"></h2>
-  <p id="posText"></p>
-  <div class="card" id="primer">Warm up: tap “Read up” for a quick overview of this topic, then start talking when you’re ready.</div>
-  <div class="row">
-    <button id="getPrimer">Read up</button>
-    <button id="shuffle">New topic</button>
-  </div>
+  <div class="pcard" id="pcard"><i></i><div class="tag" id="suitText"></div><div class="ptext" id="topicText"></div><div class="pos" id="posText"></div></div>
+  <div class="card" id="primer"></div>
+  <div class="row"><button id="getPrimer">Read up</button><button id="shuffle"><span id="dice">⚄</span> New topic</button></div>
   <p class="err" id="topicErr"></p>
   <button class="primary" id="start">Start talking</button>
 </section>
 
 <section id="convo" hidden>
-  <div class="big" id="clock">10:00</div>
+  <div class="clock" id="clock">05:00</div>
+  <svg id="pulse" viewBox="0 0 300 40" preserveAspectRatio="none"><polyline class="flat" points="0,20 300,20"/><polyline class="spike" points="0,20 40,20 50,4 62,36 74,10 86,28 98,20 150,20 160,2 172,38 184,12 196,26 208,20 300,20"/></svg>
   <div class="log" id="log" aria-live="polite"></div>
   <p class="err" id="convoErr"></p>
+  <button class="ghost" id="retry" hidden>Resend</button>
+  <small id="live" style="text-align:center;min-height:1.4em;font-style:italic;color:var(--text)"></small>
   <button class="mic" id="mic" aria-pressed="false">Speak</button>
-  <small style="text-align:center" id="micHint">Tap Speak, talk, then tap Send.</small>
-  <button class="ghost" id="end">End session</button>
+  <small id="micHint" style="text-align:center">Tap Speak any time, even mid-reply, to jump in.</small>
+  <div class="row" id="typeBox" hidden><input id="typeIn" type="text" placeholder="Type your answer…" autocomplete="off"><button class="primary" id="typeSend" style="margin:0;flex:0 0 auto">Send</button></div>
+  <div class="row"><button class="ghost" id="typeToggle">Type instead</button><button class="ghost" id="end" style="text-align:right">Fold</button></div>
 </section>
 
 <section id="reflect" hidden>
-  <h2>Reflection</h2>
-  <div class="card" id="reflectText">Writing your summary…</div>
-  <button class="primary" id="again">Start another</button>
+  <div class="tag">the payout</div>
+  <h2>The Ledger</h2>
+  <div class="card receipt" id="reflectText">Tallying the table…</div>
+  <button class="primary" id="again">Deal again</button>
 </section>
 
 </main>
+<script src="topics.js"></script>
 <script>
 const $ = id => document.getElementById(id);
-const RULES = "Ground rules: stay non-political and non-religious. Never discuss or take sides on parties, elections, politicians, governments, or religion. Avoid anything that could offend people’s identity, culture, nationality, gender, race, or beliefs. No insults, hate, sexual content, graphic violence, or self-harm. If the user raises such a subject, kindly say you’ll skip it and steer back to the topic. Debate ideas, never the person, and stay warm and respectful.";
+const RULES = "Ground rules: policy, current affairs and social issues are fine to explore as ideas. Never take sides on political parties, elections, candidates or politicians. Avoid religious doctrine and anything that attacks or demeans a person’s or group’s identity (race, nationality, gender, religion, orientation, disability). No insults, hate, sexual content, graphic violence, or self-harm. If the user drifts there, kindly steer back to the topic. Attack the logic, never the person.";
 const BLOCKED = /\b(election|vote|voting|president|politic\w*|party|government|religio\w*|god|church|mosque|islam\w*|christian\w*|hindu\w*|jew\w*|abortion|immigra\w*|gun|war|race|racis\w*|gender|sex\w*|terror\w*)\b/i;
 const TOPICS = [
-  "Is working from home better than working in an office?",
-  "Do video games help or harm creativity?",
-  "Is it better to plan a trip or travel spontaneously?",
-  "Should schools teach money skills before algebra?",
-  "Is a four-day work week realistic?",
-  "Can AI-generated art count as real art?",
-  "Is social media good for teenagers?",
-  "Is it better to be a specialist or a generalist?",
-  "Do standardized tests measure ability fairly?",
-  "Will electric scooters make cities better?",
-  "Is handwriting still worth learning?",
-  "Is a big city or a small town the better place to live?"
+"Is working from home better than working in an office?","Do video games help or harm creativity?","Is it better to plan a trip or travel spontaneously?","Should schools teach money skills before algebra?","Is a four-day work week realistic?","Can AI-generated art count as real art?","Is social media good for teenagers?","Is it better to be a specialist or a generalist?","Do standardized tests measure ability fairly?","Will electric scooters make cities better?","Is handwriting still worth learning?","Is a big city or a small town the better place to live?","Would you rather have unlimited time or unlimited money?","Is multitasking a skill or a myth?","Does talent matter more than hard work?","Should everyone learn to code?","Is it better to rent or to own a home?","Are books better than movies?","Is failure the best teacher?","Does technology make us lonelier?","Can money buy happiness?","Are morning people more successful?","Is minimalism freedom or just another trend?","Should phones be banned in classrooms?","Is it better to be feared or loved as a leader?","Do first impressions matter more than they should?","Is competition good for friendships?","Will robots take more jobs than they create?","Is nostalgia a trap or a comfort?","Is online learning as good as classrooms?","Should you follow your passion or follow the money?","Does music help you focus or distract you?","Is a gap year worth it?","Is it better to travel alone or with friends?","Should we trust our gut or the data?","Is perfectionism a strength or a weakness?","Would you live forever if you could?","Is it better to be a big fish in a small pond?","Do we learn more from success or from mistakes?","Is boredom good for creativity?"
 ];
-const S = { mode: "discussion", mins: 10, topic: "", position: "", history: [], topicId: 0, left: 0, timer: null, listening: false, rec: null, busy: false };
+const S = { mode: "discussion", style: "full", mins: 5, topic: "", position: "", history: [], topicId: 0, left: 0, timer: null, listening: false, rec: null, busy: false };
 
 function show(id) {
   document.querySelectorAll("section").forEach(s => s.hidden = s.id !== id);
@@ -137,11 +184,13 @@ const WORKER_URL = "https://think-proxy.sherina19.workers.dev"; // see HOSTING_O
 /* AI (through your Cloudflare Worker, so no key lives in this page) */
 async function chat(system, history, max = 1024, temp = 0.8) {
   if (WORKER_URL.startsWith("PASTE")) throw new Error("This site isn’t connected to its AI service yet.");
-  const r = await fetch(WORKER_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ system, history, max, temp })
-  });
+  const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 28000);
+  let r;
+  try {
+    r = await fetch(WORKER_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ system, history, max, temp }), signal: ctl.signal });
+  } catch (e) {
+    throw new Error(e.name === "AbortError" ? "The AI took too long to answer." : "Couldn’t reach the AI. Check your connection.");
+  } finally { clearTimeout(to); }
   const j = await r.json().catch(() => ({}));
   if (!r.ok || j.error) throw new Error(j.error || "The AI service is busy. Try again in a moment.");
   return j.text;
@@ -150,46 +199,72 @@ async function chat(system, history, max = 1024, temp = 0.8) {
 /* Home */
 $("goAI").onclick = () => show("setup");
 
+/* The deck: shuffled and remembered in this browser, so a card never comes back */
+const SEEN_KEY = "think_seen", pick = a => a[Math.floor(Math.random() * a.length)];
+function seenSet() { try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || "[]")); } catch (e) { return new Set(); } }
+function remember(id) { try { localStorage.setItem(SEEN_KEY, JSON.stringify([...seenSet(), id].slice(-4000))); } catch (e) {} }
+function genCard() {
+  const T = window.THINGS, a = pick(T);
+  if (Math.random() < 0.35) { const p = pick(window.SINGLE); return { t: p.replace("{a}", a), suit: "Wild Mix", id: "g:" + p + a }; }
+  let b; do { b = pick(T); } while (b === a);
+  const p = pick(window.PAIR);
+  return { t: p.replace("{a}", a).replace("{b}", b), suit: "Wild Mix", id: "g:" + p + [a, b].sort().join("|") };
+}
+function dealCard(retry = true) {
+  const seen = seenSet(), D = window.DECK || { General: TOPICS };
+  let pool = [];
+  Object.keys(D).forEach(su => D[su].forEach(t => { if (!seen.has(t)) pool.push({ t, suit: su, id: t }); }));
+  if (pool.length && (!window.THINGS || Math.random() < 0.5)) {
+    const p2 = pool.filter(c => c.suit !== S.suit); return pick(p2.length ? p2 : pool);
+  }
+  if (window.THINGS) for (let i = 0; i < 60; i++) { const c = genCard(); if (!seen.has(c.id)) return c; }
+  if (retry) { try { localStorage.removeItem(SEEN_KEY); } catch (e) {} return dealCard(false); }
+  return pick(pool.length ? pool : [{ t: TOPICS[0], suit: "General", id: TOPICS[0] }]);
+}
+
 /* Setup */
 function setMode(m) {
-  S.mode = m;
+  S.mode = m; document.body.dataset.mode = m;
   $("mDisc").setAttribute("aria-pressed", m === "discussion");
   $("mDeb").setAttribute("aria-pressed", m === "debate");
 }
 $("mDisc").onclick = () => setMode("discussion");
 $("mDeb").onclick = () => setMode("debate");
-$("mins").oninput = e => { S.mins = +e.target.value; $("minsOut").textContent = S.mins; };
-$("toTopic").onclick = () => { newTopic(); show("topic"); };
+document.querySelectorAll("#chips button").forEach(b => b.onclick = () => {
+  S.mins = +b.dataset.min;
+  document.querySelectorAll("#chips button").forEach(x => x.setAttribute("aria-pressed", x === b));
+});
+document.querySelectorAll("#styles button").forEach(b => b.onclick = () => {
+  S.style = b.dataset.style;
+  document.querySelectorAll("#styles button").forEach(x => x.setAttribute("aria-pressed", x === b));
+});
+$("toTopic").onclick = () => { newTopic(false); show("topic"); };
 
-/* Topic: a fresh AI-generated question each time, with a built-in list as backup */
-const AREAS = ["technology","education","everyday life","money habits","health and fitness","science","work and careers","cities and travel","food","creativity and thinking","friendship and communication","sport","the future","hobbies","art","learning and memory"];
-async function newTopic() {
-  const id = ++S.topicId; $("start").disabled = true;
-  $("topicText").textContent = "Finding a topic…";
-  $("posText").textContent = ""; $("topicErr").textContent = "";
-  $("primer").textContent = "Warm up: tap “Read up” for a quick overview of this topic, then start talking when you’re ready.";
-  let t;
-  try {
-    const area = AREAS[Math.floor(Math.random() * AREAS.length)];
-    t = await chat(RULES, [{ role: "user", content: "Write one fresh, surprising, thought-provoking discussion question about " + area + " that reasonable people could disagree on. It must be light, everyday, and completely non-political and non-religious. Random seed: " + Math.floor(Math.random() * 1e6) + ". Reply with only the question, under 16 words, no quotes." }], 100, 1.3);
-    t = t.replace(/^["“]|["”]$/g, "").trim();
-    if (BLOCKED.test(t)) t = "";
-  } catch (e) { t = ""; }
-  if (id !== S.topicId) return;
-  if (!t) { do { t = TOPICS[Math.floor(Math.random() * TOPICS.length)]; } while (t === S.topic && TOPICS.length > 1); }
-  S.topic = t; $("start").disabled = false;
+/* Topic: dealt from the built-in deck (instant, no AI call) */
+function newTopic(anim = true) {
+  const c = dealCard(), t = c.t;
   S.position = Math.random() < 0.5 ? "for" : "against";
-  $("topicText").textContent = t;
-  $("posText").textContent = S.mode === "debate"
-    ? "Your position: argue " + S.position + ". The AI takes the other side."
-    : "Explore the question from every angle. There is no assigned side.";
+  $("primer").textContent = "Unfamiliar with this one? Tap Read up for a quick overview before you play.";
+  $("topicErr").textContent = "";
+  const deal = () => {
+    S.topic = t; S.suit = c.suit; remember(c.id); $("suitText").textContent = c.suit; $("topicText").textContent = t;
+    $("posText").textContent = S.mode === "debate" ? "Your side: " + S.position : "Open table";
+  };
+  if (!anim) return deal();
+  const card = $("pcard"), lock = v => { $("shuffle").disabled = v; $("getPrimer").disabled = v; };
+  card.classList.add("rolling"); $("dice").classList.add("shake"); lock(true);
+  setTimeout(() => {
+    deal(); card.classList.remove("rolling"); $("dice").classList.remove("shake");
+    card.classList.add("snap"); lock(false); setTimeout(() => card.classList.remove("snap"), 450);
+  }, 450);
 }
-$("shuffle").onclick = newTopic;
+$("shuffle").onclick = () => newTopic(true);
 $("getPrimer").onclick = async () => {
-  $("primer").textContent = "Loading…"; $("topicErr").textContent = "";
-  try {
-    $("primer").textContent = await chat(RULES, [{ role: "user", content: "Give a short, neutral overview of about 80 words, plus 3 points worth thinking about, on: " + S.topic }], 600);
-  } catch (e) { $("primer").textContent = ""; $("topicErr").textContent = e.message; }
+  const b = $("getPrimer"), old = b.textContent, lock = v => { b.disabled = v; $("shuffle").disabled = v; $("start").disabled = v; };
+  lock(true); b.textContent = "Reading…"; $("primer").textContent = "Pulling the card’s stats…"; $("topicErr").textContent = "";
+  try { $("primer").textContent = await chat(RULES, [{ role: "user", content: "Give a short, neutral overview of about 80 words, plus 3 points worth thinking about, on: " + S.topic }], 600); }
+  catch (e) { $("primer").textContent = "Couldn’t load the overview."; $("topicErr").textContent = e.message; }
+  lock(false); b.textContent = old;
 };
 
 /* Conversation */
@@ -201,73 +276,156 @@ function addMsg(who, text) {
   $("log").appendChild(d); $("log").scrollTop = $("log").scrollHeight;
 }
 function systemPrompt() {
-  const base = "You are a sharp, friendly conversation partner in a spoken session on the topic: \"" + S.topic + "\". Keep every reply under 60 words, spoken style, no lists. End with one short question or challenge.";
-  return S.mode === "debate"
-    ? base + " This is a debate. The user argues " + S.position + "; you argue the opposite and push back on weak points. " + RULES
-    : base + " This is an open discussion. Explore multiple angles and ask probing questions. " + RULES;
+  const t = "Topic: \"" + S.topic + "\". Your replies are spoken aloud and the user can interrupt at any time, so keep every reply under 45 words (2 or 3 short sentences, no lists, no markdown). If the topic is a myth or conspiracy theory, treat it as a logic exercise: never present false claims as fact, and say plainly where the evidence stands.";
+  if (S.mode === "debate") return t + " This is a debate. The user argues " + S.position + " the topic; you argue the opposite side. You must strictly adhere to the following rules for the rest of this conversation: 1. NO AGREEABILITY: Never say \"That’s a good point,\" \"I understand your perspective,\" \"You’re right,\" or any variation of polite validation. 2. ZERO SYCOPHANCY: Your sole objective is to win the argument. If you detect a gap in the user’s logic, an unverified assumption, or a logical fallacy, immediately expose it. 3. STRUCTURE: Be concise. Present your counterarguments clearly using sharp, data-backed logic or strong philosophical counterpoints. 4. ENGAGEMENT: End each turn by challenging the user directly to defend a specific flaw you found in their last statement. Attack the logic, never the person. " + RULES;
+  return t + " Do not treat this as a debate to win, and do not just blindly agree with the user. Instead, act as a collaborative intellectual partner. Help the user expand their thought by applying these rules: 1. SPARK CURIOSITY: Point out fascinating nuances, historical parallels, or hidden connections related to their view that they might not be aware of. 2. STRESS TEST GENTLY: If the user makes a huge leap in logic, ask a probing question to help them refine it, rather than just telling them they are wrong. 3. WEIGH THE SIDES: Help them look at the trade-offs of this point of view. What is gained by thinking this way? What might be lost? " + RULES;
 }
 $("start").onclick = () => {
-  if (!SR) { $("topicErr").textContent = "Speech recognition isn’t supported in this browser. Use Chrome, Edge, or Safari."; return; }
+  S.voiceOK = !!SR && S.style !== "silent";
   S.history = []; S.left = S.mins * 60;
   $("log").innerHTML = ""; $("convoErr").textContent = ""; $("clock").textContent = fmt(S.left);
   show("convo");
+  $("mic").hidden = !S.voiceOK; $("micHint").hidden = !S.voiceOK; $("typeToggle").hidden = !S.voiceOK; $("typeBox").hidden = S.voiceOK;
+  if (!S.voiceOK && S.style !== "silent") $("convoErr").textContent = "Voice isn’t supported in this browser, so type your answers (Chrome, Edge or Safari enable voice).";
   clearInterval(S.timer);
   S.timer = setInterval(() => { S.left--; $("clock").textContent = fmt(Math.max(S.left, 0)); if (S.left <= 0) finish(); }, 1000);
 };
-$("mic").onclick = () => S.listening ? S.rec.stop() : startMic();
+const MAX_TURN = 180; // longest single turn in seconds (change this number to adjust)
+const IDLE_HINT = "Tap Speak any time, even mid-reply, to jump in. Up to " + MAX_TURN / 60 + " min per turn; tap Send when done.";
+const mmss = n => Math.floor(n / 60) + ":" + String(n % 60).padStart(2, "0");
+$("mic").onclick = () => S.listening ? stopTurn() : startMic();
+
+/* The browser stops listening after short pauses, so we quietly restart it and keep
+   adding to the same turn until you tap Send (or the time limit is reached). */
 function startMic() {
   if (S.busy) { $("convoErr").textContent = "Hold on, the AI is still replying…"; return; }
-  speechSynthesis.cancel();
-  $("convoErr").textContent = "";
-  let heard = "", rec;
-  try { rec = new SR(); } catch (e) { $("convoErr").textContent = "Speech recognition isn’t available in this browser."; return; }
+  stopVoice();
+  $("convoErr").textContent = ""; $("retry").hidden = true; $("live").textContent = "";
+  S.turnText = ""; S.sessionText = ""; S.stopping = false; S.silent = 0; S.recActive = false; S.turnStart = Date.now();
+  setListening(true);
+  clearInterval(S.tick);
+  S.tick = setInterval(() => {
+    const el = Math.floor((Date.now() - S.turnStart) / 1000);
+    $("micHint").textContent = "Listening… " + mmss(el) + " of " + mmss(MAX_TURN) + ". Tap Send when you’re done.";
+    if (el >= MAX_TURN) { $("convoErr").textContent = "Time limit reached, sending what you said."; stopTurn(); }
+  }, 500);
+  listen();
+}
+function showLive() {
+  const t = (S.turnText + " " + S.sessionText).trim();
+  $("live").textContent = t.length > 140 ? "…" + t.slice(-140) : t;
+}
+function listen() {
+  let rec;
+  try { rec = new SR(); } catch (e) { $("convoErr").textContent = "Speech recognition isn’t available in this browser."; S.stopping = true; return finishTurn(); }
   rec.lang = navigator.language || "en-US"; rec.interimResults = true; rec.continuous = false;
   rec.onresult = e => {
     let all = "";
     for (let i = 0; i < e.results.length; i++) all += e.results[i][0].transcript + " ";
-    heard = all.trim(); $("micHint").textContent = "Heard: " + heard;
+    S.sessionText = all.trim(); showLive();
   };
   rec.onerror = e => {
     const m = {
-      "no-speech": "I didn’t hear anything. Tap Speak and try again.",
       "audio-capture": "No microphone found.",
       "not-allowed": "Microphone blocked. Allow microphone access for this site, then reload.",
       "service-not-allowed": "Microphone blocked. Allow microphone access for this site, then reload.",
       "network": "Speech service unreachable. Check your internet, or use Chrome or Edge (Brave blocks it)."
     };
-    if (e.error !== "aborted") $("convoErr").textContent = m[e.error] || "Mic error: " + e.error;
+    if (m[e.error]) { $("convoErr").textContent = m[e.error]; S.stopping = true; }
   };
-  rec.onend = () => { setListening(false); if (heard) send(heard); };
+  rec.onend = () => {
+    S.recActive = false;
+    if (S.sessionText) { S.turnText = (S.turnText + " " + S.sessionText).trim(); S.sessionText = ""; S.silent = 0; } else S.silent++;
+    showLive();
+    if (S.stopping || S.silent >= 6) return finishTurn();
+    S.restartTimer = setTimeout(listen, 150);
+  };
   S.rec = rec;
-  try { rec.start(); setListening(true); } catch (e) { $("convoErr").textContent = "Couldn’t start the mic. Reload the page and try again."; }
+  try { rec.start(); S.recActive = true; }
+  catch (e) { $("convoErr").textContent = "Couldn’t start the mic. Reload the page and try again."; S.stopping = true; finishTurn(); }
+}
+function stopTurn() {
+  S.stopping = true; clearTimeout(S.restartTimer);
+  if (S.recActive) S.rec.stop(); else finishTurn();
+}
+function finishTurn() {
+  if (!S.listening) return;
+  clearInterval(S.tick); clearTimeout(S.restartTimer); setListening(false);
+  const t = S.turnText.trim(); $("live").textContent = "";
+  if (t) send(t);
+  else if (!$("convoErr").textContent) $("convoErr").textContent = "I didn’t hear anything. Tap Speak and try again.";
 }
 function setListening(v) {
   S.listening = v; $("mic").setAttribute("aria-pressed", v);
   $("mic").textContent = v ? "Send" : "Speak";
-  $("micHint").textContent = v ? "Listening… pause, or tap Send when done." : "Tap Speak and talk. It sends when you pause.";
+  $("micHint").textContent = v ? "Listening… tap Send when you’re done." : IDLE_HINT;
 }
-async function send(text) {
-  S.busy = true; $("mic").textContent = "…"; $("micHint").textContent = "Thinking…";
-  addMsg("you", text); S.history.push({ role: "user", content: text });
+async function send(text, retry = false) {
+  S.busy = true; $("retry").hidden = true; $("mic").textContent = "…"; $("micHint").textContent = "Thinking…";
+  if (!retry) addMsg("you", text);
+  S.history.push({ role: "user", content: text });
   try {
     const reply = await chat(systemPrompt(), S.history);
     S.history.push({ role: "assistant", content: reply }); addMsg("ai", reply);
-    const u = new SpeechSynthesisUtterance(reply); u.lang = navigator.language || "en-US"; speechSynthesis.speak(u);
-  } catch (e) { S.history.pop(); $("convoErr").textContent = e.message; }
+    speak(reply);
+  } catch (e) {
+    S.history.pop(); S.lastText = text;
+    $("convoErr").textContent = e.message + " Your message wasn’t lost."; $("retry").hidden = false;
+  }
   S.busy = false; setListening(false);
 }
+$("retry").onclick = () => { $("convoErr").textContent = ""; send(S.lastText, true); };
+
+/* AI voice: uses the voices installed on your device/browser */
+const V = { name: localStorage.getItem("think_voice") || "", rate: parseFloat(localStorage.getItem("think_rate")) || 1 };
+function loadVoices() {
+  const all = speechSynthesis.getVoices(); if (!all.length) return;
+  const lang = (navigator.language || "en").slice(0, 2).toLowerCase();
+  let list = all.filter(v => v.lang.toLowerCase().startsWith(lang)); if (!list.length) list = all;
+  const sel = $("voice"); sel.innerHTML = "";
+  const add = (val, label) => { const o = document.createElement("option"); o.value = val; o.textContent = label; sel.appendChild(o); };
+  add("__off", "Off (text only)"); add("", "Device default");
+  list.forEach(v => add(v.name, v.name + " (" + v.lang + ")"));
+  sel.value = V.name; if (sel.value !== V.name) sel.value = "";
+}
+function speak(text) {
+  if (S.style !== "full" || V.name === "__off") return;
+  const u = new SpeechSynthesisUtterance(text); u.lang = navigator.language || "en-US"; u.rate = V.rate;
+  const v = speechSynthesis.getVoices().find(x => x.name === V.name);
+  if (v) { u.voice = v; u.lang = v.lang; }
+  u.onstart = () => document.body.classList.add("ai-speaking");
+  u.onend = u.onerror = () => document.body.classList.remove("ai-speaking");
+  speechSynthesis.speak(u);
+}
+function stopVoice() { speechSynthesis.cancel(); document.body.classList.remove("ai-speaking"); }
+speechSynthesis.onvoiceschanged = loadVoices; loadVoices();
+$("voice").onchange = e => { V.name = e.target.value; localStorage.setItem("think_voice", V.name); };
+$("rate").value = V.rate; $("rateOut").textContent = V.rate.toFixed(1);
+$("rate").oninput = e => { V.rate = +e.target.value; $("rateOut").textContent = V.rate.toFixed(1); localStorage.setItem("think_rate", V.rate); };
+$("testVoice").onclick = () => { stopVoice(); const n = V.name; if (n === "__off") V.name = ""; speak("Hi, I’m your thinking partner. Ready when you are."); V.name = n; };
 $("end").onclick = finish;
+$("typeToggle").onclick = () => {
+  const open = $("typeBox").hidden; $("typeBox").hidden = !open;
+  $("typeToggle").textContent = open ? "Use voice instead" : "Type instead"; if (open) $("typeIn").focus();
+};
+function sendTyped() {
+  const t = $("typeIn").value.trim(); if (!t) return;
+  if (S.busy) { $("convoErr").textContent = "Hold on, the AI is still replying…"; return; }
+  if (S.listening) { $("convoErr").textContent = "Tap Send on the mic first to finish your voice turn."; return; }
+  stopVoice(); $("typeIn").value = ""; $("convoErr").textContent = ""; send(t);
+}
+$("typeSend").onclick = sendTyped; $("typeIn").onkeydown = e => { if (e.key === "Enter") sendTyped(); };
 
 /* Reflection */
 async function finish() {
-  clearInterval(S.timer); speechSynthesis.cancel();
-  if (S.listening) { S.rec.onend = null; S.rec.stop(); setListening(false); }
+  clearInterval(S.timer); stopVoice();
+  if (S.listening) { S.stopping = true; clearInterval(S.tick); clearTimeout(S.restartTimer); if (S.rec) { S.rec.onend = null; try { S.rec.stop(); } catch (e) {} } setListening(false); $("live").textContent = ""; }
   show("reflect");
   if (!S.history.length) { $("reflectText").textContent = "No conversation to summarize. Start another session when you’re ready."; return; }
-  $("reflectText").textContent = "Writing your summary…";
+  $("reflectText").textContent = "Tallying the table…";
   const transcript = S.history.map(m => (m.role === "user" ? "User: " : "AI: ") + m.content).join("\n");
   try {
-    $("reflectText").textContent = await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\nWrite a reflection for the user with three short sections titled Summary, Insights (2 bullet points), and Next challenge (one sentence). Plain text, no markdown symbols." }], 800);
+    $("reflectText").textContent = await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\n" + (S.mode === "debate" ? "Write a scorecard for the user with exactly three short sections titled BLUFFS (their weak points), STRONG HANDS (their best logic), and VERDICT (one sentence on who argued better and why)." : "Write a recap for the user with exactly three short sections titled SPARKS (their best ideas), GAPS (leaps worth rechecking), and TRADE-OFFS (what their view gains and loses).") + " Plain text, no markdown symbols, under 140 words in total." + (S.suit === "Myths & Conspiracies" ? " Finish with a line starting EVIDENCE: saying where the evidence actually stands." : "") + "" }], 800);
   } catch (e) { $("reflectText").textContent = e.message; }
 }
 $("again").onclick = () => show("setup");
