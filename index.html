@@ -7,11 +7,11 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2236%22 fill=%22%239fe7f5%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lora:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark}
-body[data-theme=rustic]{--page:radial-gradient(ellipse at 50% 0%,#264a55 0,#16282f 50%,#0d171c 100%);--text:#f1ebd9;--muted:#b9bdb0;--line:rgba(201,168,92,.35);--acc:#7fc1aa;--rgb:127,193,170;--d:127,193,170;--g:196,69,79;--btn:rgba(241,235,217,.05);--r:10px;--r2:14px;--body:Lora,Georgia,serif;--display:"Playfair Display",Georgia,serif;--label:"Special Elite","Courier New",monospace;--h1c:#f6efdc;--h1s:0 2px 0 rgba(0,0,0,.35);--h2c:#e8d9ae;--grain:.14;--prim:linear-gradient(#e6cb82,#bd9a48);--primc:#1c1a12;--prims:0 3px 0 #6b5722,0 6px 16px rgba(0,0,0,.4);--field:rgba(0,0,0,.25);--panel:rgba(241,235,217,.06);--panel-line:rgba(201,168,92,.3);--dface:#f7f1df;--dline:#bdb391;--dpip:#1a1a1a;--clockc:#f1ebd9;--clockbg:linear-gradient(#1a1c1e,#0a0b0c);--clockb:4px solid #b79b4e;--clocks:none;--micc:#1c1a12;--micbg:radial-gradient(circle at 35% 28%,#fff3c8,#e0bb5a 55%,#a8832a);--mics:0 5px 0 #5b4a14,0 0 26px rgba(201,168,92,.4);--rbg:#f6f2e6;--rc:#15181a;--rb:none}
-body[data-theme=rustic][data-mode=debate]{--page:radial-gradient(ellipse at 50% 0%,#5a2029 0,#2a1217 50%,#150a0d 100%);--acc:#c4454f;--rgb:196,69,79}
+body[data-theme=neon]{--page:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.18),transparent 55%),#0b0d10;--text:#EDEFF2;--muted:#8A94A0;--line:rgba(255,255,255,.12);--acc:#00ffcc;--rgb:0,255,204;--d:0,255,204;--g:168,85,255;--btn:rgba(255,255,255,.04);--r:14px;--r2:20px;--body:Manrope,system-ui,sans-serif;--display:"Chakra Petch",sans-serif;--label:Manrope,sans-serif;--h1c:#fff;--h1s:0 0 28px rgba(var(--rgb),.6);--h2c:#fff;--grain:.09;--prim:var(--acc);--primc:#05100d;--prims:0 0 28px rgba(var(--rgb),.45);--field:rgba(255,255,255,.05);--panel:rgba(255,255,255,.04);--panel-line:rgba(var(--rgb),.22);--dface:#0c1a1f;--dline:rgba(var(--rgb),.7);--dpip:var(--acc);--clockc:var(--acc);--clockbg:rgba(0,0,0,.35);--clockb:1px solid var(--panel-line);--clocks:0 0 22px rgba(var(--rgb),.7);--micc:#05100d;--micbg:radial-gradient(circle at 35% 28%,#fff,var(--acc) 58%);--mics:0 0 36px rgba(var(--rgb),.6);--rbg:rgba(255,255,255,.04);--rc:#e8f1f4;--rb:1px dashed var(--acc)}
+body[data-theme=neon][data-mode=debate]{--acc:#a855ff;--rgb:168,85,255}
 
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
@@ -103,34 +103,29 @@ summary{cursor:pointer;color:var(--muted);font-size:14px;padding:4px 0}
 @keyframes snap{0%{box-shadow:0 0 80px 20px rgba(var(--rgb),.8);transform:scale(1.04)}100%{transform:scale(1)}}
 @keyframes ripple{0%{box-shadow:0 0 0 0 rgba(var(--rgb),.55)}100%{box-shadow:0 0 0 44px rgba(var(--rgb),0)}}
 
-body[data-theme=rustic] h1{font-weight:700;font-style:italic}
-body[data-theme=rustic] h2{font-weight:700}
-body[data-theme=rustic] .orb{position:absolute;right:-46px;top:-16px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.5;background:radial-gradient(circle,#eee8d5 0 10%,#222 11% 14%,transparent 15%),repeating-radial-gradient(circle,#0a0a0a 0 2px,#1d1d1d 2px 4px);box-shadow:0 0 0 3px #1a1a1a}
-body[data-theme=rustic] .clock{position:relative}
-body[data-theme=rustic] .clock::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#000;opacity:.85}
-body[data-theme=rustic] #deck{display:block}
-body[data-theme=rustic] .hand{position:relative;width:100%;height:clamp(250px,78vw,340px);margin:6px 0 10px}
-body[data-theme=rustic] .pcard{--pip:#1a1a1a;position:absolute;aspect-ratio:5/7;border:1px solid #b9ae94;border-radius:12px;background:#f7f1df;color:#1d2024;box-shadow:inset 0 0 0 6px #f7f1df,inset 0 0 0 7px rgba(0,0,0,.28),0 12px 24px rgba(0,0,0,.55);overflow:hidden}
-body[data-theme=rustic] .pcard.red{--pip:#b3202a}
-body[data-theme=rustic] #pcard{left:17%;top:0;width:56%;transform:rotate(-2deg);z-index:2}
-body[data-theme=rustic] #scard{right:0;top:7%;width:34%;transform:rotate(6deg);z-index:1}
-body[data-theme=rustic] .pcard::before{content:attr(data-sym);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(90px,30vw,150px);color:var(--pip);opacity:.09;line-height:1}
-body[data-theme=rustic] .idx{position:absolute;display:flex;flex-direction:column;align-items:center;line-height:1;color:var(--pip);font-family:Lora,serif;font-weight:700}
-body[data-theme=rustic] .idx b{font-size:clamp(14px,4.2vw,20px)}
-body[data-theme=rustic] .idx span{font-size:clamp(12px,3.6vw,18px)}
-body[data-theme=rustic] .idx.tl{top:9px;left:10px}
-body[data-theme=rustic] .idx.br{bottom:9px;right:10px;transform:rotate(180deg)}
-body[data-theme=rustic] .mid{position:absolute;inset:0;justify-content:center;align-items:center;text-align:center;padding:0 clamp(22px,7vw,34px)}
-body[data-theme=rustic] .pcard .tag{color:#6f6a52;font-size:clamp(8px,2.2vw,11px);letter-spacing:.14em}
-body[data-theme=rustic] .ptext{font-family:Lora,serif;font-weight:700;font-size:clamp(13px,3.7vw,18px);line-height:1.25;color:#1d2024}
-body[data-theme=rustic] #sideText{font-family:var(--display);font-size:clamp(12px,3.4vw,16px);color:var(--pip)}
-body[data-theme=rustic] .pcard i{position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(135deg,#9a1f2e 0 8px,transparent 8px 16px);display:none}
-body[data-theme=rustic] #deckback{position:absolute;left:1%;top:9%;width:30%;aspect-ratio:5/7;border-radius:10px;border:4px solid #f7f1df;transform:rotate(-8deg);z-index:0;background:repeating-linear-gradient(45deg,#2b3a7a 0 5px,#1f2a5c 5px 10px);box-shadow:3px 3px 0 #17204a,6px 6px 0 #101733,0 10px 18px rgba(0,0,0,.6)}
-body[data-theme=rustic][data-mode=debate] .pcard i{display:block}
-@media (prefers-reduced-motion:no-preference){.orb{animation:spin 40s linear infinite}}
+body[data-theme=neon] h1{text-transform:uppercase;letter-spacing:.04em}
+body[data-theme=neon] h2{text-transform:uppercase;letter-spacing:.08em}
+body[data-theme=neon] .orb{position:absolute;right:-40px;top:-8px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.75;filter:blur(2px);background:radial-gradient(circle at 35% 30%,rgba(var(--rgb),.9),rgba(var(--rgb),.15) 55%,transparent 70%)}
+body[data-theme=neon] .hand{display:flex;flex-direction:column;gap:12px;margin:4px 0}
+body[data-theme=neon] .pcard{position:relative;border:1px solid rgba(var(--rgb),.5);border-radius:22px;background:linear-gradient(160deg,rgba(var(--rgb),.16),rgba(255,255,255,.03));box-shadow:0 0 34px rgba(var(--rgb),.25),inset 0 0 30px rgba(var(--rgb),.06);padding:28px 22px;overflow:hidden}
+body[data-theme=neon] #scard{align-self:flex-start;border-radius:999px;padding:10px 18px}
+body[data-theme=neon] .idx,body[data-theme=neon] #deckback,body[data-theme=neon] .pcard i,body[data-theme=neon] .pcard::before{display:none}
+body[data-theme=neon] #scard .mid{flex-direction:row;align-items:baseline;gap:10px}
+body[data-theme=neon] .pcard .tag{font-size:11px}
+body[data-theme=neon] .ptext{font-family:var(--display);font-weight:700;font-size:clamp(22px,6.4vw,28px);line-height:1.2;color:#fff}
+body[data-theme=neon] #sideText{font-family:var(--display);font-weight:700;font-size:18px;color:var(--acc);letter-spacing:.06em}
+body[data-theme=neon] #pulse{display:block}
+body[data-theme=neon] button.primary{border-radius:14px}
+
+.choose{margin-top:auto}
+.choose label{display:block;margin-bottom:6px}
+.mode{--c:var(--d);cursor:pointer;display:block;text-align:left;font:inherit;color:inherit}
+.mode.deb{--c:var(--g)}
+.mode:hover{border-color:rgb(var(--c))}
+.mode .go{display:block;margin-top:10px;font-style:normal;font-family:var(--label);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgb(var(--c))}
 </style>
 </head>
-<body data-mode="discussion" data-theme="rustic">
+<body data-mode="discussion" data-theme="neon">
 <div class="grain"></div>
 <main>
 
@@ -142,24 +137,20 @@ body[data-theme=rustic][data-mode=debate] .pcard i{display:block}
   </div>
   <div class="flow">
     <p><b>The deal.</b> A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap <em>Read up</em> for a quick overview first.</p>
-    <div class="modes">
-      <div class="mode disc"><b>Discussion</b><span>Freely think a topic through, in detail.</span></div>
-      <div class="mode deb"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span></div>
-    </div>
-    <p><b>Voice first.</b> Talk it out, or switch to typing any time. Replies are short, so jump in whenever you like: tap Speak to cut the AI off.</p>
+    <p><b>Voice first.</b> Talk it out, or switch to typing any time. Replies are short, so jump in whenever you like: tap Speak to cut the AI off. Somewhere public? Pick Quiet or Silent on the next page.</p>
   </div>
-  <div><label>How do you want to play?</label><div class="pills"><button class="pill" data-style="full" aria-pressed="true">Speak &amp; hear</button><button class="pill" data-style="quiet" aria-pressed="false">Quiet</button><button class="pill" data-style="silent" aria-pressed="false">Silent</button></div><div class="stylenote"></div></div>
-  <button class="primary" id="goAI">Start</button>
+  <div class="choose"><label>Tap a mode to begin</label>
+    <div class="modes">
+      <button class="mode disc" data-mode="discussion"><b>Discussion</b><span>Freely think a topic through, in detail.</span><i class="go">Choose →</i></button>
+      <button class="mode deb" data-mode="debate"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span><i class="go">Choose →</i></button>
+    </div>
+  </div>
   <small style="text-align:center">Playing with a person: coming soon</small>
 </section>
 
 <section id="setup" hidden>
   <button class="ghost" data-go="home">Back</button>
-  <h2>Choose your table</h2>
-  <div class="row">
-    <button id="mDisc" class="mbtn m-disc" aria-pressed="true"><b>Discussion</b><br><small>Low stakes. Think it through.</small></button>
-    <button id="mDeb" class="mbtn m-deb" aria-pressed="false"><b>Debate</b><br><small>High stakes. Defend your side.</small></button>
-  </div>
+  <h2 id="setupTitle">Set up your round</h2>
   <div><label>How do you want to play?</label><div class="pills"><button class="pill" data-style="full" aria-pressed="true">Speak &amp; hear</button><button class="pill" data-style="quiet" aria-pressed="false">Quiet</button><button class="pill" data-style="silent" aria-pressed="false">Silent</button></div><div class="stylenote"></div></div>
   <div>
     <label>Round length (minutes)</label>
@@ -247,7 +238,6 @@ async function chat(system, history, max = 1024, temp = 0.8) {
 }
 
 /* Home */
-$("goAI").onclick = () => show("setup");
 
 /* The deck: shuffled and remembered in this browser, so a card never comes back */
 const SEEN_KEY = "think_seen", pick = a => a[Math.floor(Math.random() * a.length)];
@@ -261,6 +251,15 @@ function genCard() {
   let b; do { b = pick(T); } while (b === a);
   const p = pick(window.PAIR);
   return { t: p.replace("{a}", a).replace("{b}", b), suit: "Wild Mix", id: "g:" + p + [a, b].sort().join("|") };
+}
+function dealDebate(retry = true) {
+  const seen = seenSet(), D = window.DEBATE || {}; let pool = [];
+  Object.keys(D).forEach(su => D[su].forEach(([t, a, b]) => { const id = "d:" + t; if (!seen.has(id)) pool.push({ t, suit: su, id, a, b }); }));
+  if (!pool.length) {
+    if (retry) { try { localStorage.setItem(SEEN_KEY, JSON.stringify([...seen].filter(x => !x.startsWith("d:")))); } catch (e) {} return dealDebate(false); }
+    const [t, a, b] = Object.values(D)[0][0]; return { t, suit: Object.keys(D)[0], id: "d:" + t, a, b };
+  }
+  const p2 = pool.filter(c => c.suit !== S.suit); return pick(p2.length ? p2 : pool);
 }
 function dealCard(retry = true) {
   const seen = seenSet(), D = window.DECK || { General: TOPICS };
@@ -315,11 +314,9 @@ function renderLedger(text) {
 /* Setup */
 function setMode(m) {
   S.mode = m; document.body.dataset.mode = m;
-  $("mDisc").setAttribute("aria-pressed", m === "discussion");
-  $("mDeb").setAttribute("aria-pressed", m === "debate");
+  $("setupTitle").textContent = m === "debate" ? "Set up your debate" : "Set up your discussion";
 }
-$("mDisc").onclick = () => setMode("discussion");
-$("mDeb").onclick = () => setMode("debate");
+document.querySelectorAll(".mode").forEach(b => b.onclick = () => { setMode(b.dataset.mode); show("setup"); });
 document.querySelectorAll("#chips button").forEach(b => b.onclick = () => {
   S.mins = +b.dataset.min;
   document.querySelectorAll("#chips button").forEach(x => x.setAttribute("aria-pressed", x === b));
@@ -336,18 +333,21 @@ $("toTopic").onclick = () => { newTopic(false); show("topic"); };
 
 /* Topic: dealt from the built-in deck (instant, no AI call) */
 function newTopic(anim = true) {
-  const c = dealCard(), t = c.t;
+  const c = S.mode === "debate" ? dealDebate() : dealCard(), t = c.t;
   S.position = Math.random() < 0.5 ? "for" : "against";
   $("primer").textContent = "Unfamiliar with this one? Tap Read up for a quick overview before you play.";
   $("topicErr").textContent = "";
   const deal = () => {
+    if (c.a) { const ua = Math.random() < 0.5; S.stanceUser = ua ? c.a : c.b; S.stanceAI = ua ? c.b : c.a; }
     S.topic = t; S.suit = c.suit; remember(c.id); $("suitText").textContent = c.suit; $("topicText").textContent = t;
     const f = face(c), deb = S.mode === "debate", sy = deb ? "♣" : "★", all = (q, v) => document.querySelectorAll(q).forEach(e => e.textContent = v);
     $("pcard").dataset.sym = f.sy; $("pcard").classList.toggle("red", f.sy === "♥" || f.sy === "♦");
     all(".rk", f.rk); all(".sy", f.sy);
-    $("scard").dataset.sym = sy; $("sideText").textContent = deb ? S.position.toUpperCase() : "OPEN TABLE";
-    $("sideTag").textContent = deb ? "you’ll argue" : "no sides";
-    $("sideNote").textContent = deb ? "You’ll be arguing " + S.position.toUpperCase() + " this. The AI argues " + (S.position === "for" ? "AGAINST" : "FOR") + " and pushes back, so defend your side." : "Open table: no sides. Think it through freely and the AI will help you dig deeper.";
+    $("scard").dataset.sym = sy; $("sideText").textContent = deb ? "YOUR SIDE" : "OPEN TABLE";
+    $("sideTag").textContent = deb ? "debate" : "no sides";
+    const sn = $("sideNote"); sn.textContent = "";
+    if (deb) { sn.append("You’ll be arguing that "); const bb = document.createElement("b"); bb.textContent = S.stanceUser; sn.append(bb, ". The AI argues the opposite and pushes back, so defend your side."); }
+    else sn.textContent = "Open table: no sides. Think it through freely and the AI will help you dig deeper.";
     all(".sk", deb ? "K" : "JK"); all(".ssy", sy);
   };
   if (!anim) return deal();
@@ -377,7 +377,7 @@ function addMsg(who, text) {
 }
 function systemPrompt() {
   const t = "Topic: \"" + S.topic + "\". Your replies are spoken aloud and the user can interrupt at any time, so keep every reply under 45 words (2 or 3 short sentences, no lists, no markdown). If the topic is a myth or conspiracy theory, treat it as a logic exercise: never present false claims as fact, and say plainly where the evidence stands.";
-  if (S.mode === "debate") return t + " This is a debate. The user argues " + S.position + " the topic; you argue the opposite side. You must strictly adhere to the following rules for the rest of this conversation: 1. NO AGREEABILITY: Never say \"That’s a good point,\" \"I understand your perspective,\" \"You’re right,\" or any variation of polite validation. 2. ZERO SYCOPHANCY: Your sole objective is to win the argument. If you detect a gap in the user’s logic, an unverified assumption, or a logical fallacy, immediately expose it. 3. STRUCTURE: Be concise. Present your counterarguments clearly using sharp, data-backed logic or strong philosophical counterpoints. 4. ENGAGEMENT: End each turn by challenging the user directly to defend a specific flaw you found in their last statement. Attack the logic, never the person. " + RULES;
+  if (S.mode === "debate") return t + " This is a debate. The user argues that " + S.stanceUser + ". You argue the opposite: that " + S.stanceAI + ". You must strictly adhere to the following rules for the rest of this conversation: 1. NO AGREEABILITY: Never say \"That’s a good point,\" \"I understand your perspective,\" \"You’re right,\" or any variation of polite validation. 2. ZERO SYCOPHANCY: Your sole objective is to win the argument. If you detect a gap in the user’s logic, an unverified assumption, or a logical fallacy, immediately expose it. 3. STRUCTURE: Be concise. Present your counterarguments clearly using sharp, data-backed logic or strong philosophical counterpoints. 4. ENGAGEMENT: End each turn by challenging the user directly to defend a specific flaw you found in their last statement. Attack the logic, never the person. " + RULES;
   return t + " Do not treat this as a debate to win, and do not just blindly agree with the user. Instead, act as a collaborative intellectual partner. Help the user expand their thought by applying these rules: 1. SPARK CURIOSITY: Point out fascinating nuances, historical parallels, or hidden connections related to their view that they might not be aware of. 2. STRESS TEST GENTLY: If the user makes a huge leap in logic, ask a probing question to help them refine it, rather than just telling them they are wrong. 3. WEIGH THE SIDES: Help them look at the trade-offs of this point of view. What is gained by thinking this way? What might be lost? " + RULES;
 }
 $("start").onclick = () => {
