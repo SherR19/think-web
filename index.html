@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2236%22 fill=%22%239fe7f5%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&family=Tilt+Neon&family=Yellowtail&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark}
 body[data-theme=neon]{--page:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.18),transparent 55%),#0b0d10;--text:#EDEFF2;--muted:#8A94A0;--line:rgba(255,255,255,.12);--acc:#00ffcc;--rgb:0,255,204;--d:0,255,204;--g:168,85,255;--btn:rgba(255,255,255,.04);--r:14px;--r2:20px;--body:Manrope,system-ui,sans-serif;--display:"Chakra Petch",sans-serif;--label:Manrope,sans-serif;--h1c:#fff;--h1s:0 0 28px rgba(var(--rgb),.6);--h2c:#fff;--grain:.09;--prim:var(--acc);--primc:#05100d;--prims:0 0 28px rgba(var(--rgb),.45);--field:rgba(255,255,255,.05);--panel:rgba(255,255,255,.04);--panel-line:rgba(var(--rgb),.22);--dface:#0c1a1f;--dline:rgba(var(--rgb),.7);--dpip:var(--acc);--clockc:var(--acc);--clockbg:rgba(0,0,0,.35);--clockb:1px solid var(--panel-line);--clocks:0 0 22px rgba(var(--rgb),.7);--micc:#05100d;--micbg:radial-gradient(circle at 35% 28%,#fff,var(--acc) 58%);--mics:0 0 36px rgba(var(--rgb),.6);--rbg:rgba(255,255,255,.04);--rc:#e8f1f4;--rb:1px dashed var(--acc)}
@@ -164,6 +164,37 @@ button.primary{justify-self:start;min-width:280px;margin-top:8px}
 #reflect>button.primary{align-self:start}
 body[data-theme=rustic] .hand{height:440px}
 }
+
+#home{gap:30px}
+.flow{gap:22px}
+.flow>.tag{margin-bottom:-6px}
+h1 .big{display:block}
+h1 .script{display:block;width:max-content;font-family:Yellowtail,cursive;font-weight:400;text-transform:none;letter-spacing:0;font-size:.46em;line-height:1;margin:-.08em 0 0 .5em;transform:rotate(-4deg);transform-origin:left}
+@media (min-width:960px){#home h1{font-size:clamp(72px,7.4vw,118px)}}
+
+body[data-theme=neon] h1{font-family:"Tilt Neon","Chakra Petch",sans-serif;font-size:clamp(64px,19vw,104px);line-height:.95;letter-spacing:.02em;color:#eafffa;text-shadow:0 0 6px rgba(var(--rgb),.95),0 0 22px rgba(var(--rgb),.75),0 0 56px rgba(var(--rgb),.45)}
+body[data-theme=neon] h1 .script{color:#c4fff3;text-shadow:0 0 6px rgba(var(--rgb),.9),0 0 18px rgba(var(--rgb),.6)}
+body[data-theme=neon] .modes{flex-direction:column;gap:16px}
+body[data-theme=neon] .mode{min-height:92px;border:none;padding:20px 22px}
+body[data-theme=neon] .mode.disc{transform:none;background:linear-gradient(180deg,#3dffd8,#00c9a0);color:#04110e;box-shadow:0 0 30px rgba(0,255,204,.4)}
+body[data-theme=neon] .mode.deb{transform:none;margin-top:0;background:linear-gradient(180deg,#bd7bff,#8a3fe0);color:#fff;box-shadow:0 0 30px rgba(168,85,255,.45)}
+body[data-theme=neon] .mode b{font-size:22px}
+body[data-theme=neon] .mode span{font-size:15px}
+body[data-theme=neon] .mode.disc b,body[data-theme=neon] .mode.disc span{color:#04110e}
+body[data-theme=neon] .mode.deb b,body[data-theme=neon] .mode.deb span{color:#fff}
+body[data-theme=neon] .mode:hover{filter:brightness(1.08)}
+.mode svg{display:none}
+
+body[data-theme=neon] .choose{position:relative;isolation:isolate}
+body[data-theme=neon] .mode{border:2px solid rgb(var(--c));border-radius:34px;padding:22px 24px 22px 88px;min-height:106px;position:relative}
+body[data-theme=neon] .mode svg{display:block;position:absolute;left:28px;top:50%;transform:translateY(-50%);width:38px;height:38px;fill:none;stroke:rgb(var(--c));stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgb(var(--c)))}
+body[data-theme=neon] .mode.disc{--c:0,255,204;transform:none;color:#e9f3f1;background:linear-gradient(180deg,rgba(var(--c),.22),rgba(var(--c),.05)),#071210;box-shadow:0 0 10px rgb(var(--c)),0 0 30px rgba(var(--c),.5),inset 0 0 0 6px #05100e,inset 0 0 0 8px rgb(var(--c)),inset 0 0 28px rgba(var(--c),.28)}
+body[data-theme=neon] .mode.deb{--c:168,85,255;transform:none;margin-top:0;color:#f1eafe;background:linear-gradient(180deg,rgba(var(--c),.26),rgba(var(--c),.06)),#0c0716;box-shadow:0 0 10px rgb(var(--c)),0 0 30px rgba(var(--c),.5),inset 0 0 0 6px #0a0613,inset 0 0 0 8px rgb(var(--c)),inset 0 0 28px rgba(var(--c),.3)}
+body[data-theme=neon] .mode.disc b,body[data-theme=neon] .mode.deb b{color:rgb(var(--c));font-size:22px;text-shadow:0 0 12px rgba(var(--c),.9)}
+body[data-theme=neon] .mode.disc span,body[data-theme=neon] .mode.deb span{color:#e6e9f2;font-size:15px}
+body[data-theme=neon] .mode.disc:hover,body[data-theme=neon] .mode.deb:hover{transform:translateY(-3px);filter:brightness(1.12)}
+@media (prefers-reduced-motion:no-preference){body[data-theme=neon] .mode{animation:hum 3.2s ease-in-out infinite}}
+@keyframes hum{50%{filter:brightness(1.14)}}
 </style>
 </head>
 <body data-mode="discussion" data-theme="neon">
@@ -174,24 +205,19 @@ body[data-theme=rustic] .hand{height:440px}
 <section id="home">
   <div class="hero"><div class="orb"></div><div class="bulbs"></div>
     <div class="tag">the thinking game</div>
-    <h1>Think<br>out loud.</h1>
-    <p class="lead">Get a random topic. Say what you really think. Then get challenged.</p>
+    <h1><span class="big">Think</span><span class="script">out loud</span></h1>
     <div class="bulbs b2"></div>
-  </div>
-  <div class="icons" aria-hidden="true">
-    <svg viewBox="0 0 48 48"><rect x="6" y="8" width="30" height="32" rx="4"/><rect x="10" y="16" width="22" height="12" rx="2"/><path d="M18 16v12M26 16v12M36 14h6v10"/><circle cx="42" cy="12" r="2.5"/></svg>
-    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="7"/><path d="M24 6v11M24 31v11M6 24h11M31 24h11M11 11l8 8M29 29l8 8M37 11l-8 8M19 29l-8 8"/></svg>
-    <svg viewBox="0 0 48 48"><rect x="10" y="5" width="28" height="38" rx="4"/><path d="M24 15c-5 5-8 7-8 11a4 4 0 0 0 8 1 4 4 0 0 0 8-1c0-4-3-6-8-11zM24 28v6"/></svg>
-    <svg viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" rx="7"/><circle class="p" cx="16" cy="16" r="2.4"/><circle class="p" cx="32" cy="16" r="2.4"/><circle class="p" cx="24" cy="24" r="2.4"/><circle class="p" cx="16" cy="32" r="2.4"/><circle class="p" cx="32" cy="32" r="2.4"/></svg>
+    <p class="lead">Get a random topic. Say what you really think. Then get challenged.</p>
   </div>
   <div class="flow">
+    <div class="tag">How it works</div>
     <p><b>The deal.</b> A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap <em>Read up</em> for a quick overview first.</p>
     <p><b>Voice first.</b> Talk it out, or switch to typing any time. Replies are short, so jump in whenever you like: tap Speak to cut the AI off. Somewhere public? Pick Quiet or Silent on the next page.</p>
   </div>
   <div class="choose"><label>Choose to begin</label>
     <div class="modes">
-      <button class="mode disc" data-mode="discussion"><b>Discussion</b><span>Freely think a topic through, in detail.</span></button>
-      <button class="mode deb" data-mode="debate"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span></button>
+      <button class="mode disc" data-mode="discussion"><svg viewBox="0 0 36 36"><path d="M6 8h16a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H13l-5 4v-4H6a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3z"/><path d="M28 14h2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3v3l-4-3h-5"/></svg><b>Discussion</b><span>Freely think a topic through, in detail.</span></button>
+      <button class="mode deb" data-mode="debate"><svg viewBox="0 0 36 36"><path d="M20 3L8 20h9l-3 13 14-19h-9z"/></svg><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span></button>
     </div>
   </div>
   <small style="text-align:center">Playing with a person: coming soon</small>
