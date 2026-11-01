@@ -123,26 +123,75 @@ body[data-theme=neon] button.primary{border-radius:14px}
 .mode.deb{--c:var(--g)}
 .mode:hover{border-color:rgb(var(--c))}
 .mode .go{display:block;margin-top:10px;font-style:normal;font-family:var(--label);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgb(var(--c))}
+.bulbs,.icons{display:none}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;margin-bottom:4px;border-bottom:1px solid var(--panel-line)}
+.brand{font-family:var(--display);font-size:20px;letter-spacing:.1em;text-transform:uppercase;color:var(--h1c)}
+.crumb{font-family:var(--label);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+@media (min-width:640px){main{max-width:680px}}
+@media (min-width:960px){
+main{max-width:1120px;padding:26px 56px 44px}
+.top{margin-bottom:20px}
+section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:72px;row-gap:22px;align-content:start;align-items:start}
+section>*{grid-column:1}
+section>.ghost,section>h2{grid-column:1/-1}
+button.primary{justify-self:start;min-width:280px;margin-top:8px}
+#home{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center}
+#home h1{font-size:clamp(52px,5vw,76px)}
+#home>.hero{grid-row:1}
+#home>.icons{grid-row:2}
+#home>.flow{grid-row:3}
+#home>.choose{grid-column:2;grid-row:1/span 3;margin:0}
+#home .modes{flex-direction:column;gap:20px}
+#home .mode{padding:24px}
+#home .mode.deb{margin-top:0}
+#home>small{grid-column:2;grid-row:4}
+#setup>div:nth-of-type(1){grid-row:3}
+#setup>div:nth-of-type(2){grid-column:2;grid-row:3}
+#setup>details{grid-row:4}
+#setup>button.primary{grid-column:2;grid-row:4;align-self:end;justify-self:end}
+#topic>.hand{grid-row:2/span 5}
+#topic>.sidenote{grid-column:2;grid-row:2}
+#topic>#primer{grid-column:2;grid-row:3}
+#topic>.row{grid-column:2;grid-row:4}
+#topic>.err{grid-column:2;grid-row:5}
+#topic>#start{grid-column:2;grid-row:6}
+#convo>.log{grid-column:2;grid-row:1/span 8;height:64vh;max-height:none}
+#convo>#convoErr{grid-column:2;grid-row:9}
+#convo>#retry{grid-column:2;grid-row:10;justify-self:start}
+#convo>.clock{max-width:440px}
+#reflect>.receipt{grid-column:2;grid-row:1/span 4}
+#reflect>button.primary{align-self:start}
+body[data-theme=rustic] .hand{height:440px}
+}
 </style>
 </head>
 <body data-mode="discussion" data-theme="neon">
 <div class="grain"></div>
 <main>
+<header class="top"><span class="brand">Think</span><span class="crumb" id="crumb"></span></header>
 
 <section id="home">
-  <div class="hero"><div class="orb"></div>
+  <div class="hero"><div class="orb"></div><div class="bulbs"></div>
     <div class="tag">the thinking game</div>
     <h1>Think<br>out loud.</h1>
     <p class="lead">Get a random topic. Say what you really think. Then get challenged.</p>
+    <div class="bulbs b2"></div>
+  </div>
+  <div class="icons" aria-hidden="true">
+    <svg viewBox="0 0 48 48"><rect x="6" y="8" width="30" height="32" rx="4"/><rect x="10" y="16" width="22" height="12" rx="2"/><path d="M18 16v12M26 16v12M36 14h6v10"/><circle cx="42" cy="12" r="2.5"/></svg>
+    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="7"/><path d="M24 6v11M24 31v11M6 24h11M31 24h11M11 11l8 8M29 29l8 8M37 11l-8 8M19 29l-8 8"/></svg>
+    <svg viewBox="0 0 48 48"><rect x="10" y="5" width="28" height="38" rx="4"/><path d="M24 15c-5 5-8 7-8 11a4 4 0 0 0 8 1 4 4 0 0 0 8-1c0-4-3-6-8-11zM24 28v6"/></svg>
+    <svg viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" rx="7"/><circle class="p" cx="16" cy="16" r="2.4"/><circle class="p" cx="32" cy="16" r="2.4"/><circle class="p" cx="24" cy="24" r="2.4"/><circle class="p" cx="16" cy="32" r="2.4"/><circle class="p" cx="32" cy="32" r="2.4"/></svg>
   </div>
   <div class="flow">
     <p><b>The deal.</b> A topic is picked at random. Go with it: the aim is to think beyond what you usually know. New to it? Tap <em>Read up</em> for a quick overview first.</p>
     <p><b>Voice first.</b> Talk it out, or switch to typing any time. Replies are short, so jump in whenever you like: tap Speak to cut the AI off. Somewhere public? Pick Quiet or Silent on the next page.</p>
   </div>
-  <div class="choose"><label>Tap a mode to begin</label>
+  <div class="choose"><label>Choose to begin</label>
     <div class="modes">
-      <button class="mode disc" data-mode="discussion"><b>Discussion</b><span>Freely think a topic through, in detail.</span><i class="go">Choose →</i></button>
-      <button class="mode deb" data-mode="debate"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span><i class="go">Choose →</i></button>
+      <button class="mode disc" data-mode="discussion"><b>Discussion</b><span>Freely think a topic through, in detail.</span></button>
+      <button class="mode deb" data-mode="debate"><b>Debate</b><span>A side is picked for you. Counter the AI with sound logic.</span></button>
     </div>
   </div>
   <small style="text-align:center">Playing with a person: coming soon</small>
@@ -216,6 +265,7 @@ const TOPICS = [
 const S = { mode: "discussion", style: "full", mins: 5, topic: "", position: "", history: [], topicId: 0, left: 0, timer: null, listening: false, rec: null, busy: false };
 
 function show(id) {
+  $("crumb").textContent = id === "home" ? "" : (S.mode === "debate" ? "Debate" : "Discussion") + (id === "convo" ? " · " + S.mins + " min" : "");
   document.querySelectorAll("section").forEach(s => s.hidden = s.id !== id);
   window.scrollTo(0, 0);
 }
