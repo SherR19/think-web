@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Manrope:wght@400;600;800&family=Tilt+Neon&family=Yellowtail&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark}
-body[data-theme=neon]{--page:radial-gradient(ellipse at 50% -10%,rgba(var(--rgb),.18),transparent 55%),#0b0d10;--text:#EDEFF2;--muted:#8A94A0;--line:rgba(255,255,255,.12);--acc:#00ffcc;--rgb:0,255,204;--d:0,255,204;--g:168,85,255;--btn:rgba(255,255,255,.04);--r:14px;--r2:20px;--body:Manrope,system-ui,sans-serif;--display:"Chakra Petch",sans-serif;--label:Manrope,sans-serif;--h1c:#fff;--h1s:0 0 28px rgba(var(--rgb),.6);--h2c:#fff;--grain:.09;--prim:var(--acc);--primc:#05100d;--prims:0 0 28px rgba(var(--rgb),.45);--field:rgba(255,255,255,.05);--panel:rgba(255,255,255,.04);--panel-line:rgba(var(--rgb),.22);--dface:#0c1a1f;--dline:rgba(var(--rgb),.7);--dpip:var(--acc);--clockc:var(--acc);--clockbg:rgba(0,0,0,.35);--clockb:1px solid var(--panel-line);--clocks:0 0 22px rgba(var(--rgb),.7);--micc:#05100d;--micbg:radial-gradient(circle at 35% 28%,#fff,var(--acc) 58%);--mics:0 0 36px rgba(var(--rgb),.6);--rbg:rgba(255,255,255,.04);--rc:#e8f1f4;--rb:1px dashed var(--acc)}
+body[data-theme=neon]{--rgb2:168,85,255;--page:radial-gradient(ellipse at 50% -12%,rgba(var(--rgb),.2),transparent 55%),radial-gradient(ellipse at 100% 105%,rgba(var(--rgb2),.13),transparent 50%),linear-gradient(180deg,#0a1018,#05070b);--text:#EDEFF2;--muted:#8A94A0;--line:rgba(255,255,255,.12);--acc:#00ffcc;--rgb:0,255,204;--d:0,255,204;--g:168,85,255;--btn:rgba(255,255,255,.04);--r:14px;--r2:20px;--body:Manrope,system-ui,sans-serif;--display:"Chakra Petch",sans-serif;--label:Manrope,sans-serif;--h1c:#fff;--h1s:0 0 28px rgba(var(--rgb),.6);--h2c:#fff;--grain:.09;--prim:var(--acc);--primc:#05100d;--prims:0 0 28px rgba(var(--rgb),.45);--field:rgba(255,255,255,.05);--panel:rgba(255,255,255,.04);--panel-line:rgba(var(--rgb),.22);--dface:#0c1a1f;--dline:rgba(var(--rgb),.7);--dpip:var(--acc);--clockc:var(--acc);--clockbg:rgba(0,0,0,.35);--clockb:1px solid var(--panel-line);--clocks:0 0 22px rgba(var(--rgb),.7);--micc:#05100d;--micbg:radial-gradient(circle at 35% 28%,#fff,var(--acc) 58%);--mics:0 0 36px rgba(var(--rgb),.6);--rbg:rgba(255,255,255,.04);--rc:#e8f1f4;--rb:1px dashed var(--acc)}
 body[data-theme=neon][data-mode=debate]{--acc:#a855ff;--rgb:168,85,255}
 
 *{box-sizing:border-box}
@@ -105,7 +105,6 @@ summary{cursor:pointer;color:var(--muted);font-size:14px;padding:4px 0}
 
 body[data-theme=neon] h1{text-transform:uppercase;letter-spacing:.04em}
 body[data-theme=neon] h2{text-transform:uppercase;letter-spacing:.08em}
-body[data-theme=neon] .orb{position:absolute;right:-40px;top:-8px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.75;filter:blur(2px);background:radial-gradient(circle at 35% 30%,rgba(var(--rgb),.9),rgba(var(--rgb),.15) 55%,transparent 70%)}
 body[data-theme=neon] .hand{display:flex;flex-direction:column;gap:12px;margin:4px 0}
 body[data-theme=neon] .pcard{position:relative;border:1px solid rgba(var(--rgb),.5);border-radius:22px;background:linear-gradient(160deg,rgba(var(--rgb),.16),rgba(255,255,255,.03));box-shadow:0 0 34px rgba(var(--rgb),.25),inset 0 0 30px rgba(var(--rgb),.06);padding:28px 22px;overflow:hidden}
 body[data-theme=neon] #scard{align-self:flex-start;border-radius:999px;padding:10px 18px}
@@ -195,6 +194,57 @@ body[data-theme=neon] .mode.disc span,body[data-theme=neon] .mode.deb span{color
 body[data-theme=neon] .mode.disc:hover,body[data-theme=neon] .mode.deb:hover{transform:translateY(-3px);filter:brightness(1.12)}
 @media (prefers-reduced-motion:no-preference){body[data-theme=neon] .mode{animation:hum 3.2s ease-in-out infinite}}
 @keyframes hum{50%{filter:brightness(1.14)}}
+
+/* ---- Neon tube style: white-hot core, coloured halo, thin gap ---- */
+body[data-theme=neon]{--gap:#05100e;--base:#071210;--core:#b8fff0;--tube:0 0 8px rgb(var(--rgb)),0 0 22px rgba(var(--rgb),.45),inset 0 0 0 3px var(--gap),inset 0 0 0 5px var(--core),inset 0 0 16px rgba(var(--rgb),.22)}
+body[data-theme=neon][data-mode=debate]{--gap:#0a0613;--base:#0c0716;--core:#e0c4ff}
+body[data-theme=neon] .top{border-bottom:1px solid rgba(var(--rgb),.55);box-shadow:0 10px 16px -14px rgb(var(--rgb))}
+/* home tiles */
+body[data-theme=neon] #home .mode{padding:22px 24px 22px 88px}
+body[data-theme=neon] .mode{--tubeT:0 0 8px rgb(var(--c)),0 0 22px rgba(var(--c),.45),inset 0 0 0 3px var(--gap),inset 0 0 0 5px var(--core),inset 0 0 16px rgba(var(--c),.22);--tubeH:0 0 16px rgb(var(--c)),0 0 48px rgba(var(--c),.85),inset 0 0 0 3px var(--gap),inset 0 0 0 5px var(--core),inset 0 0 28px rgba(var(--c),.42)}
+body[data-theme=neon] .mode.disc{--core:#b8fff0;--gap:#041a16}
+body[data-theme=neon] .mode.deb{--core:#e0c4ff;--gap:#0a0613}
+body[data-theme=neon] .mode.disc,body[data-theme=neon] .mode.deb{border:2px solid var(--core);box-shadow:var(--tubeT)}
+body[data-theme=neon] .mode.disc b,body[data-theme=neon] .mode.deb b{color:var(--core)}
+body[data-theme=neon] .mode svg{stroke:var(--core)}
+body[data-theme=neon] .mode.disc:hover,body[data-theme=neon] .mode.deb:hover,body[data-theme=neon] .mode.disc:focus-visible,body[data-theme=neon] .mode.deb:focus-visible{animation:none;box-shadow:var(--tubeH);transform:translateY(-3px);filter:none}
+@media (prefers-reduced-motion:no-preference){
+body[data-theme=neon] .mode.disc,body[data-theme=neon] .mode.deb{animation:tube 3.4s ease-in-out infinite}
+body[data-theme=neon] .mode.deb{animation-delay:-1.7s}
+body[data-theme=neon] .mode.disc b{animation:flick 7s infinite}
+body[data-theme=neon] .mode.deb b{animation:flick 7s infinite 2.5s}
+}
+@keyframes tube{0%,100%{box-shadow:var(--tubeT)}50%{box-shadow:var(--tubeH)}}
+@keyframes flick{0%,90%,100%{opacity:1}92%{opacity:.5}94%{opacity:1}96%{opacity:.7}}
+/* the same tube look on every other screen */
+body[data-theme=neon] button.primary{background:linear-gradient(180deg,rgba(var(--rgb),.3),rgba(var(--rgb),.08)),var(--base);color:#fff;border:2px solid var(--core);border-radius:999px;box-shadow:var(--tube);text-shadow:0 0 10px rgba(var(--rgb),.95)}
+body[data-theme=neon] button.primary:hover{box-shadow:0 0 16px rgb(var(--rgb)),0 0 48px rgba(var(--rgb),.8),inset 0 0 0 3px var(--gap),inset 0 0 0 5px var(--core),inset 0 0 28px rgba(var(--rgb),.4)}
+body[data-theme=neon] .pill,body[data-theme=neon] .chips button{background:var(--base);border:2px solid rgba(var(--rgb),.55);box-shadow:0 0 8px rgba(var(--rgb),.3)}
+body[data-theme=neon] .pill[aria-pressed=true],body[data-theme=neon] .chips button[aria-pressed=true]{border-color:var(--core);color:#fff;text-shadow:0 0 10px rgba(var(--rgb),.9);box-shadow:var(--tube)}
+body[data-theme=neon] .card,body[data-theme=neon] .msg.ai{background:var(--base);border:1.5px solid rgba(var(--rgb),.5);box-shadow:0 0 14px rgba(var(--rgb),.2),inset 0 0 14px rgba(var(--rgb),.06)}
+body[data-theme=neon] .msg.you{background:rgba(var(--rgb),.12);border:1.5px solid var(--core);box-shadow:0 0 10px rgba(var(--rgb),.4)}
+body[data-theme=neon] .sidenote{background:var(--base);border:2px solid var(--core);border-radius:20px;box-shadow:var(--tube)}
+body[data-theme=neon] .pcard{border:2px solid var(--core);border-radius:28px;box-shadow:var(--tube);background:linear-gradient(160deg,rgba(var(--rgb),.2),rgba(var(--rgb),.04)),var(--base)}
+body[data-theme=neon] #scard{border-radius:999px;box-shadow:0 0 12px rgba(var(--rgb),.7),inset 0 0 0 3px var(--gap),inset 0 0 0 5px var(--core)}
+body[data-theme=neon] .clock{background:var(--base);border:2px solid var(--core);border-radius:20px;box-shadow:var(--tube)}
+body[data-theme=neon] .receipt{background:var(--base);border:2px solid var(--core);border-radius:20px;box-shadow:var(--tube)}
+body[data-theme=neon] input[type=text],body[data-theme=neon] select{background:var(--base);border:1.5px solid rgba(var(--rgb),.6);border-radius:14px}
+body[data-theme=neon] input[type=text]:focus{box-shadow:0 0 14px rgba(var(--rgb),.6)}
+
+body[data-theme=neon] h1 .big i{font-style:normal;display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+body[data-theme=neon] h1{animation:neonbreath 3.6s ease-in-out infinite}
+body[data-theme=neon] h1 .big i:nth-child(1){animation:letterA 9s infinite 1s}
+body[data-theme=neon] h1 .big i:nth-child(2){animation:letterB 7s infinite 3.5s}
+body[data-theme=neon] h1 .big i:nth-child(3){animation:letterA 11s infinite 5s}
+body[data-theme=neon] h1 .big i:nth-child(4){animation:letterB 13s infinite 2s}
+body[data-theme=neon] h1 .big i:nth-child(5){animation:letterA 8s infinite 6.5s}
+body[data-theme=neon] h1 .script{animation:flick 6s infinite 1s}
+}
+@keyframes neonbreath{0%,100%{text-shadow:0 0 6px rgba(var(--rgb),.95),0 0 22px rgba(var(--rgb),.75),0 0 56px rgba(var(--rgb),.45)}50%{text-shadow:0 0 10px rgba(var(--rgb),1),0 0 34px rgba(var(--rgb),.9),0 0 86px rgba(var(--rgb),.65)}}
+@keyframes letterA{0%,38%,41%,44%,100%{opacity:1}39%{opacity:.2;text-shadow:none}42%{opacity:.45;text-shadow:none}}
+@keyframes letterB{0%,60%,63%,66%,100%{opacity:1}61%{opacity:.15;text-shadow:none}64%{opacity:.5;text-shadow:none}}
+body[data-theme=neon][data-mode=debate]{--rgb2:0,255,204}
 </style>
 </head>
 <body data-mode="discussion" data-theme="neon">
@@ -203,9 +253,9 @@ body[data-theme=neon] .mode.disc:hover,body[data-theme=neon] .mode.deb:hover{tra
 <header class="top"><span class="brand">Think</span><span class="crumb" id="crumb"></span></header>
 
 <section id="home">
-  <div class="hero"><div class="orb"></div><div class="bulbs"></div>
+  <div class="hero"><div class="bulbs"></div>
     <div class="tag">the thinking game</div>
-    <h1><span class="big">Think</span><span class="script">out loud</span></h1>
+    <h1><span class="big"><i>T</i><i>h</i><i>i</i><i>n</i><i>k</i></span><span class="script">out loud</span></h1>
     <div class="bulbs b2"></div>
     <p class="lead">Get a random topic. Say what you really think. Then get challenged.</p>
   </div>
