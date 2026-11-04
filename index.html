@@ -234,20 +234,29 @@ body[data-theme=neon] input[type=text]:focus{box-shadow:0 0 14px rgba(var(--rgb)
 body[data-theme=neon] h1 .big i{font-style:normal;display:inline-block}
 @media (prefers-reduced-motion:no-preference){
 body[data-theme=neon] h1{animation:neonbreath 3.6s ease-in-out infinite}
-body[data-theme=neon] h1 .big i:nth-child(1){animation:letterA 9s infinite 1s}
-body[data-theme=neon] h1 .big i:nth-child(2){animation:letterB 7s infinite 3.5s}
-body[data-theme=neon] h1 .big i:nth-child(3){animation:letterA 11s infinite 5s}
-body[data-theme=neon] h1 .big i:nth-child(4){animation:letterB 13s infinite 2s}
-body[data-theme=neon] h1 .big i:nth-child(5){animation:letterA 8s infinite 6.5s}
-body[data-theme=neon] h1 .script{animation:flick 6s infinite 1s}
 }
 @keyframes neonbreath{0%,100%{text-shadow:0 0 6px rgba(var(--rgb),.95),0 0 22px rgba(var(--rgb),.75),0 0 56px rgba(var(--rgb),.45)}50%{text-shadow:0 0 10px rgba(var(--rgb),1),0 0 34px rgba(var(--rgb),.9),0 0 86px rgba(var(--rgb),.65)}}
 @keyframes letterA{0%,38%,41%,44%,100%{opacity:1}39%{opacity:.2;text-shadow:none}42%{opacity:.45;text-shadow:none}}
 @keyframes letterB{0%,60%,63%,66%,100%{opacity:1}61%{opacity:.15;text-shadow:none}64%{opacity:.5;text-shadow:none}}
 body[data-theme=neon][data-mode=debate]{--rgb2:0,255,204}
+
+/* ---- Drawn-in tunnel background ---- */
+.tunnel{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;opacity:.46}
+.tunnel::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 44%,rgba(var(--rgb2),.2),transparent 70%),radial-gradient(ellipse at 50% 50%,rgba(4,6,10,.5),transparent 75%)}
+.ring{position:absolute;left:50%;top:44%;width:150vmax;height:150vmax;overflow:visible;transform:translate(-50%,-50%) scale(calc(.1 + var(--i) * .16)) rotate(calc(var(--i) * 6deg * var(--d)));opacity:.55;will-change:transform,opacity}
+.ring polygon{vector-effect:non-scaling-stroke;stroke-linejoin:round}
+@media (prefers-reduced-motion:no-preference){
+.ring{animation:zoom 11s cubic-bezier(.5,0,.85,.55) infinite,fade 11s linear infinite;animation-delay:calc(var(--i) * -1.375s)}
+.tunnel{animation:tunnelglow 7s ease-in-out infinite}
+}
+@keyframes zoom{0%{transform:translate(-50%,-50%) scale(.04) rotate(0deg)}100%{transform:translate(-50%,-50%) scale(1.5) rotate(calc(45deg * var(--d)))}}
+@keyframes fade{0%{opacity:0}15%{opacity:1}75%{opacity:.85}100%{opacity:0}}
+@keyframes tunnelglow{0%,100%{opacity:.4}50%{opacity:.6}}
 </style>
 </head>
 <body data-mode="discussion" data-theme="neon">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:rgb(var(--rgb))"/><stop offset="1" style="stop-color:rgb(var(--rgb2))"/></linearGradient><linearGradient id="gB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:rgb(var(--rgb2))"/><stop offset="1" style="stop-color:rgb(var(--rgb))"/></linearGradient></defs></svg>
+<div class="tunnel" aria-hidden="true"><svg class="ring" style="--i:0;--d:1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="2"/></svg><svg class="ring" style="--i:1;--d:-1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="2"/></svg><svg class="ring" style="--i:2;--d:1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="2"/></svg><svg class="ring" style="--i:3;--d:-1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="2"/></svg><svg class="ring" style="--i:4;--d:1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="2"/></svg><svg class="ring" style="--i:5;--d:-1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="2"/></svg><svg class="ring" style="--i:6;--d:1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gA)" stroke-width="2"/></svg><svg class="ring" style="--i:7;--d:-1" viewBox="0 0 200 200"><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="9" opacity=".2"/><polygon points="100,6 181,53 181,147 100,194 19,147 19,53" fill="none" stroke="url(#gB)" stroke-width="2"/></svg></div>
 <div class="grain"></div>
 <main>
 <header class="top"><span class="brand">Think</span><span class="crumb" id="crumb"></span></header>
