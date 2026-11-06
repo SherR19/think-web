@@ -43,7 +43,7 @@ summary{cursor:pointer;color:var(--muted);font-size:14px;padding:4px 0}
 .lead{font-size:19px;line-height:1.45;color:var(--text);max-width:17em;margin-top:14px}
 .flow{display:flex;flex-direction:column;gap:20px}
 .flow p b{color:var(--text)}
-.flow em{color:var(--acc);font-style:normal;border-bottom:1px dashed var(--acc)}
+.flow em{color:var(--acc);font-style:normal;font-weight:600}
 .modes{display:flex;gap:12px;align-items:flex-start}
 .mode{flex:1;padding:14px;border-radius:var(--r2);background:var(--panel);border:1px solid var(--panel-line)}
 .mode.disc{transform:rotate(-1.4deg) translateX(-3px)}
@@ -445,7 +445,7 @@ function rollDie() {
 function renderLedger(text) {
   const box = $("reflectText"); box.textContent = "";
   const t = document.createElement("div"); t.className = "lt"; t.textContent = S.topic; box.appendChild(t);
-  const heads = /^(BLUFFS|STRONG HANDS|VERDICT|SPARKS|GAPS|TRADE-OFFS|EVIDENCE)\b(\s*\([^)]*\))?\s*[:\-–—]?\s*/i;
+  const heads = /^(WEAK SPOTS|STRONG POINTS|BLUFFS|STRONG HANDS|VERDICT|SPARKS|GAPS|TRADE-OFFS|EVIDENCE)\b(\s*\([^)]*\))?\s*[:\-–—]?\s*/i;
   let cur = null;
   text.split("\n").forEach(line => {
     const l = line.replace(/[*#_]/g, "").trim(); if (!l) return;
@@ -473,6 +473,7 @@ document.querySelectorAll("#chips button").forEach(b => b.onclick = () => {
 const STYLE_NOTE = { full: "Speak & hear: the full experience. Best with headphones.", quiet: "Quiet: you speak, the AI replies in text only.", silent: "Silent: you type, the AI replies in text only. Works anywhere." };
 function setStyle(v) {
   S.style = v;
+  $("start").textContent = v === "silent" ? "Start typing" : "Start talking";
   document.querySelectorAll("[data-style]").forEach(b => b.setAttribute("aria-pressed", b.dataset.style === v));
   document.querySelectorAll(".stylenote").forEach(e => e.textContent = STYLE_NOTE[v] + " In a public place? Try Quiet or Silent.");
 }
@@ -674,7 +675,7 @@ async function finish() {
   $("reflectText").textContent = "Writing your review…";
   const transcript = S.history.map(m => (m.role === "user" ? "User: " : "AI: ") + m.content).join("\n");
   try {
-    renderLedger(await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\n" + (S.mode === "debate" ? "Write a scorecard for the user with exactly three short sections titled BLUFFS (their weak points), STRONG HANDS (their best logic), and VERDICT (one sentence on who argued better and why)." : "Write a recap for the user with exactly three short sections titled SPARKS (their best ideas), GAPS (leaps worth rechecking), and TRADE-OFFS (what their view gains and loses).") + " Put each section title in capitals on its own line, then 1 or 2 short plain sentences. No markdown symbols. Under 120 words in total." + (S.suit === "Myths & Conspiracies" ? " Finish with a line starting EVIDENCE: saying where the evidence actually stands." : "") + "" }], 800));
+    renderLedger(await chat(RULES, [{ role: "user", content: "Topic: " + S.topic + "\nTranscript:\n" + transcript + "\n\n" + (S.mode === "debate" ? "Write a short logic review for the user with exactly two sections titled WEAK SPOTS (where their logic was flawed, unsupported or assumed something, naming the specific flaw) and STRONG POINTS (where their logic held up, and why). Do not say who won or who argued better. No verdict and no scores." : "Write a recap for the user with exactly three short sections titled SPARKS (their best ideas), GAPS (leaps worth rechecking), and TRADE-OFFS (what their view gains and loses).") + " Put each section title in capitals on its own line, then 1 or 2 short plain sentences. No markdown symbols. Under 120 words in total." + (S.suit === "Myths & Conspiracies" ? " Finish with a line starting EVIDENCE: saying where the evidence actually stands." : "") + "" }], 800));
   } catch (e) { $("reflectText").textContent = e.message; }
 }
 $("again").onclick = () => show("setup");
